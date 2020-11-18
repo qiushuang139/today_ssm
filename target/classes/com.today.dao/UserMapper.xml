@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.today.dao.UserDao">
+    <resultMap id="UserResultMap" type="com.today.entity.User" >
+        <id property="userId" column="user_id" /><!--用户id-->
+        <result property="userName" column="user_name"  /><!--用户名-->
+        <result property="password" column="password"  /><!--密码-->
+        <result property="userAvatarUrl" column="user_avatar_url" /><!--用户头像URL-->
+    </resultMap>
+
+    <insert id="addUser" parameterType="com.today.entity.User">
+        insert
+        into user(user_id,user_name,password,user_avatar_url)
+        values (#{userId},#{userName},#{userName},#{userAvatarUrl})
+    </insert>
+    <update id="updateUser" parameterType="com.today.entity.User">
+        update user
+        set user_id=#{userId},user_name=#{userName},password=#{password},user_avatar_url=#{userAvatarUrl}
+        where user_id=#{userId}
+    </update>
+    <select id="getUserById" resultMap="UserResultMap">
+        select *
+        from user
+        where user_id=#{userId}
+    </select>
+    <select id="getPasswordById" resultType="java.lang.String">
+        select password
+        from user
+        where user_id=#{userId}
+    </select>
+</mapper>
