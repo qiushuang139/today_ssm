@@ -11,7 +11,7 @@
     http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <!--1.扫描包-->
-    <context:component-scan base-package="com.today.service"/>
+    <context:component-scan base-package="com.today.controller"/>
 
     <!--2.静态资源过滤-->
     <mvc:default-servlet-handler/>
@@ -21,7 +21,7 @@
 
     <!--4.视图解析器-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="prefix" value="/WEB-INF/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
 
