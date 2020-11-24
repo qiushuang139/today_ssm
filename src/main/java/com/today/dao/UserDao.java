@@ -17,4 +17,6 @@ public interface UserDao {
 
     User getUserById(@Param("userId") int userId);
 
+    int getMaxUserId();
+
 }

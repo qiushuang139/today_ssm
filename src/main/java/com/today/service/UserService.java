@@ -16,4 +16,6 @@ public interface UserService {
     int addUser(User user);
 
     int updateUser(User user);
+
+    int getMaxUserId();
 }

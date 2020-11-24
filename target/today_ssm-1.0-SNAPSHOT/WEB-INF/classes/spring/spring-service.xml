@@ -13,6 +13,15 @@
         <property name="userDao" ref="userDao"/>
     </bean>
 
+    <bean id="todoServiceImpl" class="com.today.service.impl.TodoServiceImpl">
+        <property name="todoDao" ref="todoDao"/>
+        <property name="todoRealationshipDao" ref="todoRealationshipDao"/>
+    </bean>
+
+    <bean id="ScheduleServiceImpl" class="com.today.service.impl.ScheduleServiceImpl">
+        <property name="scheduleDao" ref="scheduleDao"/>
+    </bean>
+
 
 <!--    <bean id="lendServiceImpl" class="com.book.service.LendServiceImpl">-->
 <!--        <property name="lendDao" ref="lendDao"/>-->

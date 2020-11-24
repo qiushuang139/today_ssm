@@ -9,9 +9,8 @@
 
     <mappers>
         <mapper resource="com.today.dao/UserMapper.xml"/>
-<!--        <mapper resource="com.today.dao/BookMapper.xml"/>-->
-<!--        <mapper resource="com.today.dao/LendMapper.xml"/>-->
-<!--        <mapper resource="com.today.dao/ReaderCardMapper.xml"/>-->
-<!--        <mapper resource="com.today.dao/ReaderInfoMapper.xml"/>-->
+        <mapper resource="com.today.dao/TodoMapper.xml"/>
+        <mapper resource="com.today.dao/ScheduleMapper.xml"/>
+        <mapper resource="com.today.dao/TodoRealationshipMapper.xml"/>
     </mappers>
 </configuration>

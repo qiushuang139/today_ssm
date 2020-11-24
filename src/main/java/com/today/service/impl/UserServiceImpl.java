@@ -1,5 +1,6 @@
 package com.today.service.impl;
 
+import com.today.dao.TodoRealationshipDao;
 import com.today.dao.UserDao;
 import com.today.entity.User;
 import com.today.service.UserService;
@@ -16,6 +17,7 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDao userDao;
+
 
     @Override
     public User getUserById(int userId) {
@@ -35,6 +37,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public int updateUser(User user) {
         return userDao.updateUser(user);
+    }
+
+    @Override
+    public int getMaxUserId() {
+        return userDao.getMaxUserId();
     }
 
     public void setUserDao(UserDao userDao) {

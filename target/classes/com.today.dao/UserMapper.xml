@@ -30,4 +30,8 @@
         from user
         where user_id=#{userId}
     </select>
+    <select id="getMaxUserId" resultType="java.lang.Integer">
+        select max(user_id)
+        from user;
+    </select>
 </mapper>
