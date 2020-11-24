@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.today.dao.TodoDao">
+    <resultMap id="TodoResultMap" type="com.today.entity.Todo" >
+        <id property="todoId" column="todo_id" /><!--待办id-->
+        <result property="scheduleId" column="schedule_id"/>
+        <result property="userId" column="user_id"/>
+        <result property="todoProgressRate" column="todo_progress_rate"/>
+        <result property="repeatType" column="repeat_type"/>
+        <result property="todoState" column="todo_state"/>
+        <result property="todoType" column="type"/>
+        <result property="priority" column="priority"/>
+        <result property="beginTime" column="begin_time"/>
+        <result property="endTime" column="end_time"/>
+        <result property="content" column="content"/>
+    </resultMap>
+
+    <insert id="addTodo" parameterType="com.today.entity.Todo">
+        insert
+        into todo
+        values (#{todoId},#{scheduleId},#{userId},#{todoProgressRate}
+        ,#{repeatType},#{todoState},#{todoType},#{priority},#{beginTime},#{endTime},#{content})
+    </insert>
+
+    <update id="updateTodoByTodoId" parameterType="com.today.entity.Todo">
+        update todo
+        set schedule_id=#{scheduleId},user_id=#{userId},todo_progress_rate=#{todoProgressRate},
+        repeat_type=#{repeatType},todo_state=#{todoState},
+        type=#{todoType},priority=#{priority},begin_time=#{beginTime},end_time=#{endTime},content=#{content}
+        where todo_id=#{todoId}
+    </update>
+
+
+    <delete id="deleteTodoByTodoId">
+        delete
+        from todo
+        where todo_id=#{todoId}
+    </delete>
+
+    <delete id="deleteTodoByUserId">
+        delete
+        from todo
+        where user_id=#{userId}
+    </delete>
+
+    <delete id="deleteTodoByScheduleId">
+        delete
+        from todo
+        where schedule_id=#{scheduleId}
+    </delete>
+
+    <select id="getTodoByTodoId" resultMap="TodoResultMap">
+        select *
+        from todo
+        where todo_id=#{todoId}
+    </select>
+
+    <select id="getTodoByUserId" resultMap="TodoResultMap">
+        select *
+        from todo
+        where user_id=#{userId}
+    </select>
+
+    <select id="getTodoByScheduleId" resultMap="TodoResultMap">
+        select *
+        from todo
+        where schedule_id=#{scheduleId}
+    </select>
+
+    <select id="getTodoNumberByUserId" resultType="java.lang.Integer">
+        select count(*)
+        from todo
+        where user_id=#{userId}
+    </select>
+
+    <select id="getTodoNumberByScheduleId" resultType="java.lang.Integer">
+        select count(*)
+        from todo
+        where schedule_id={scheduleId}
+    </select>
+
+    <select id="getMaxTodoId" resultType="java.lang.Integer">
+        select max(schedule_id)
+        from todo
+    </select>
+
+</mapper>

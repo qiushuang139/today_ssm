@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.today.dao.ScheduleDao">
+    <resultMap id="ScheduleResultMap" type="com.today.entity.Schedule" >
+        <id property="scheduleId" column="schedule_id" /><!--待办id-->
+        <result property="userId" column="user_id"/>
+        <result property="beginTime" column="begin_time"/>
+        <result property="endTime" column="end_time"/>
+        <result property="content" column="content"/>
+        <result property="repeatType" column="repeat_type"/>
+        <result property="alarmType" column="alarm_type"/>
+        <result property="scheduleType" column="schedule_type"/>
+    </resultMap>
+
+    <insert id="addSchedule" parameterType="com.today.entity.Schedule">
+        insert
+        into schedule
+         values (#{scheduleId},#{userId},#{content},
+         #{beginTime},#{endTime},#{repeatType},#{alarmType},#{scheduleType});
+    </insert>
+
+    <update id="updateSchedule" parameterType="com.today.entity.Schedule">
+        update schedule
+        set user_id=#{userId},content=#{content},begin_time=#{beginTime},
+        end_time=#{endTime},repeat_type=#{repeatType},alarm_type=#{alarmType},schedule_type=#{scheduleType}
+        where schedule_id=#{scheduleId}
+    </update>
+
+    <delete id="deleteScheduleByScheduleId">
+        delete
+        from schedule
+        where schedule_id=#{scheduleId}
+    </delete>
+
+    <delete id="deleteScheduleByUserId">
+        delete
+        from schedule
+        where user_id=#{userId}
+    </delete>
+
+    <select id="getScheduleByScheduleId" resultMap="ScheduleResultMap">
+        select *
+        from schedule
+        where schedule_id=#{scheduleId}
+    </select>
+
+    <select id="getScheduleByUserId" resultType="com.today.entity.Schedule">
+        select *
+        from schedule
+        where user_id=#{userId}
+    </select>
+
+    <select id="getMaxScheduleId" resultType="java.lang.Integer">
+        select max(schedule_id)
+        from schedule
+    </select>
+
+
+</mapper>
