@@ -21,6 +21,13 @@
     <bean id="ScheduleServiceImpl" class="com.today.service.impl.ScheduleServiceImpl">
         <property name="scheduleDao" ref="scheduleDao"/>
     </bean>
+    <bean id="TomatoClockImpl" class="com.today.service.impl.TomatoClockImpl">
+        <property name="tomatoClockDao" ref="tomatoClockDao"/>
+    </bean>
+    <bean id="TomatoClockStateRecordImpl" class="com.today.service.impl.TomatoClockStateRecordImpl">
+        <property name="tomatoClockStateRecordDao" ref="tomatoClockStateRecordDao"/>
+
+    </bean>
 
 
 <!--    <bean id="lendServiceImpl" class="com.book.service.LendServiceImpl">-->

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.today.dao.TomatoClockDao">
+    <resultMap id="TomatoClockResultMap" type="com.today.entity.TomatoClock">
+ <id property="tomatoClockId" column="tomato_clock_id"/> <!--番茄钟id-->
+        <result property="todoId" column="todo_id"/>
+        <result property="type" column="type"/>
+        <result property="singelDuration" column="singel_duration"/>
+        <result property="beginTime" column="begin_time "/>
+        <result property="userId" column="user_id"/>
+        <result property="singelRestDuration" column="singel_rest_duration"/>
+        <result property="repeatTimes" column="repeat_times"/>
+        <result property="summay" column="summay"/>
+        <result property="bgmUrl" column="bgm_url"/>
+
+    </resultMap>
+    <insert id="addTomatoClock" parameterType="com.today.entity.TomatoClock">
+        insert
+        into tomatoClock
+        values (#{tomatoClockId},#{type},#{singelDuration},#{beginTime},#{userId},#{singelRestDuration},#{repeatTimes},
+        #{summay},#{bgmUrl})
+    </insert>
+    <update id="updateTomatoClock" parameterType="com.today.entity.TomatoClock">
+        update tomatoClock
+        set( tomato_clock_id=#{tomatoClockId},todo_id=#{todoId},type=#{type},singel_duration=#{singelDuration}
+        ,begin_time=#{beginTime},user_id=#{userId},singel_rest_duration=#singelRestDuration},
+        repeat_times=#{repeatTimes},summay=#{summay},bgm_url=#{bgmUrl})
+        where todo_id=#{todoId}
+    </update>
+    <update id="SetTomatoClockState" parameterType="com.today.entity.TomatoClock">
+            update tomatoClock
+            set (type=#{type})
+            where tomato_clock_id=#{tomatoClockId}
+            </update>
+    <update id="getTomatoClockById" parameterType="com.today.entity.TomatoClock">
+SEARCH *
+WEHRER tomato_clock_id=#{tomatoClockId}
+    </update>
+    <update id="SleepTomatoClock"  parameterType="com.today.entity.TomatoClock">
+        update tomatoClock
+        set(type ="Suspend")
+    </update>
+    <select id="getTomatoClockById" parameterType="com.today.entity.TomatoClock">
+        search  *
+        into tomatoClock
+        where tomato_clock_id=#{tomatoClockId}
+    </select>
+
+</mapper>
