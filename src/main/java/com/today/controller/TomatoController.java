@@ -25,42 +25,65 @@
  */
 package com.today.controller;
 
+import com.today.entity.Todo;
 import com.today.entity.TomatoClock;
+import com.today.service.TodoService;
 import com.today.service.TomatoClockService;
 import com.today.service.TomatoClockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/tomato")
 public class TomatoController {
+@Autowired
+private TodoService todoService;
+    //  @Qualifier("tomatoClockService")
 
-
-    @Autowired
     private TomatoClockService tomatoClockService;
 
     /**
-     * @Date
      * @param tomatoClock
+     * @Date
      * @return:int
      */
- @RequestMapping("/addTomato")
-    public int addTomatoClock(@RequestBody TomatoClock tomatoClock){
-int tomatoId= tomatoClockService.getTomatoClockID()+1;
-tomatoClock.setTomatoClockID(tomatoId);
-return tomatoClockService.addTomatoClock(tomatoClock)+1;
- }
+    @RequestMapping("/addTomato")
+    public int addTomatoClock(@RequestBody TomatoClock tomatoClock) {
+        int tomatoId = tomatoClockService.getTomatoClockID() + 1;
+        tomatoClock.setTomatoClockID(tomatoId);
+        return tomatoClockService.addTomatoClock(tomatoClock) + 1;
+    }
 
     /**
      * @param tomatoClock
      * @return:int
      */
-     @RequestMapping("/updateTomatoClock")
-    public int updateTomatoClock(@RequestBody TomatoClock tomatoClock){
-return tomatoClockService.updateTomatoClock(tomatoClock);
-     }
+    @RequestMapping("/updateTomatoClock")
+    public int updateTomatoClock(@RequestBody TomatoClock tomatoClock) {
+        return tomatoClockService.updateTomatoClock(tomatoClock);
+    }
+
+    /**
+     * @param tomatoClock
+     */
+    @RequestMapping("/SetTomatoClockState")
+    public int SetTomatoClockState(@RequestBody TomatoClock tomatoClock) {
+        Todo todo=todoService.getTodoByTodoId(todoService.getMaxTodoId());
+        return tomatoClockService.SetTomatoClockState(tomatoClock, todo);
+    }
+
+    @RequestMapping("/getTomatoClockById/{tomatoClockID}")
+    public TomatoClock getTomatoClockById(int tomatoClockID) {
+        return tomatoClockService.getTomatoClockById(tomatoClockID);
+    }
+    @RequestMapping("/SleepTomatoClock")
+    public int SleepTomatoClock(TomatoClock tomatoClock) {
+        return tomatoClockService.SleepTomatoClock(tomatoClock);
+    }
+
 
 }

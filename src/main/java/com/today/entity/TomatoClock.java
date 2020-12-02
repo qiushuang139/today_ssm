@@ -35,7 +35,7 @@ public class TomatoClock {
     }
 
     //番茄钟
-    private int tomatoClockID;
+   private int tomatoClockID;
     //待办ID
     protected int  todoID;
     //类型
@@ -85,5 +85,5 @@ public class TomatoClock {
     }
 
     //小结
-    private String summry;
+    protected String summry;
 }
