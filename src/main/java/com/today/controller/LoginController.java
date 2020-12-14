@@ -3,6 +3,7 @@ package com.today.controller;
 import com.today.entity.User;
 import com.today.service.UserService;
 import com.today.service.impl.UserServiceImpl;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +36,7 @@ public class LoginController {
         return userService.addUser(user);
     }
 
-    @RequestMapping("/updateUser")
+    @RequestMapping(value = "/updateUser",method = RequestMethod.PUT)
     public Integer updateUser(User user){
         return userService.updateUser(user);
     }
@@ -49,7 +50,7 @@ public class LoginController {
         return false;
     }
 
-    @RequestMapping("/getUser/{userId}")
+    @RequestMapping(value = "/getUser/{userId}",method = RequestMethod.GET)
     public User getUserById(@PathVariable("userId") int userId){
         return userService.getUserById(userId);
     }

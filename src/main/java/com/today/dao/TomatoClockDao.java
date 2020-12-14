@@ -18,7 +18,7 @@ public interface TomatoClockDao {
 
     int SleepTomatoClock(TomatoClock tomatoCLock);
 
-    TomatoClock getTomatoClockById(@Param("tomatoClockId")int tomatoClockID);
+    TomatoClock getTomatoClockById(@Param("tomatoClockID")int tomatoClockID);
 
     int getTomatoClockId();
 }

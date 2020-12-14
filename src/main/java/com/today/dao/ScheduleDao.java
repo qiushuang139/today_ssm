@@ -13,6 +13,7 @@ import java.util.List;
 public interface ScheduleDao {
     int addSchedule(Schedule schedule);
 
+
     int deleteScheduleByScheduleId(@Param("scheduleId") int scheduleId);
 
     int deleteScheduleByUserId(@Param("userId")int userId);

@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.today.dao.TomatoClockDao">
     <resultMap id="TomatoClockResultMap" type="com.today.entity.TomatoClock">
- <id property="tomatoClockID" column="tomato_clock_id"/> <!--番茄钟id-->
+        <id property="tomatoClockID" column="tomato_clock_id"/> <!--番茄钟id-->
         <result property="todoID" column="todo_id"/>
         <result property="type" column="type"/>
         <result property="singelRestDuration" column="singel_duration"/>
@@ -18,31 +18,34 @@
     </resultMap>
     <insert id="addTomatoClock" parameterType="com.today.entity.TomatoClock">
         insert
-        into tomatoClock
+        into tomatoclock
         values (#{tomatoClockId},#{type},#{singelDuration},#{beginTime},#{userId},#{singelRestDuration},#{repeatTimes},
         #{summay},#{bgmUrl})
     </insert>
     <update id="updateTomatoClock" parameterType="com.today.entity.TomatoClock">
-        update tomatoClock
+        update tomatoclock
         set( tomato_clock_id=#{tomatoClockId},todo_id=#{todoId},type=#{type},singel_duration=#{singelDuration}
         ,begin_time=#{beginTime},user_id=#{userId},singel_rest_duration=#singelRestDuration},
         repeat_times=#{repeatTimes},summay=#{summay},bgm_url=#{bgmUrl})
         where todo_id=#{todoId}
     </update>
     <update id="SetTomatoClockState" parameterType="com.today.entity.TomatoClock">
-            update tomatoClock
+            update tomatoclock
             set (type=#{type})
             where tomato_clock_id=#{tomatoClockId}
             </update>
 
     <update id="SleepTomatoClock"  parameterType="com.today.entity.TomatoClock">
-        update tomatoClock
+        update tomatoclock
         set(type ="Suspend")
     </update>
+    <update id="OverTomatoClock"></update>
+
     <select id="getTomatoClockById"  resultMap="TomatoClockResultMap">
-        search  *
-        from tomatoClock
-        where tomato_clock_id=#{tomatoClockId}
+        select  *
+        from tomatoclock
+        where tomato_clock_id=#{tomatoClockID}
     </select>
+    <select id="getTomatoClockId" resultType="java.lang.Integer"></select>
 
 </mapper>
