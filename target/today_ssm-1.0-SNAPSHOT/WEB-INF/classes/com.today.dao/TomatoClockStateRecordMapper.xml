@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.today.dao.TomatoClockStateRecordDao">
+    <resultMap id="TomatoClockStateRecordResultMap" type="com.today.entity.TomatoClockStateRecord">
+    <id property="tomatoClockID" column="tomato_clock_id" /><!--关联番茄钟ID -->
+    <result property="statetype" column="state_type"  /><!--状态类型-->
+    <result property="time" column="time"  /><!--状态变化时间-->
+    </resultMap>
+    <update id="generateDiary" parameterType="com.today.entity.TomatoClockStateRecord">
+        update
+    </update>
+    <update id="getSummry" parameterType="com.today.entity.TomatoClockStateRecord">
+        update tomatoClockStateRecord
+        set summry={{summry}}
+       where user_id=#{userId}
+    </update>
+
+    <select id="getRecord" parameterType="com.today.entity.TomatoClockStateRecord" resultType="java.util.Map">
+        select *
+        from tomatoClockStateRecord
+        where user_id=#{userId}
+    </select>
+    <select id="gettime" resultType="java.util.Date"></select>
+    <select id="getstatetype" resultType="java.lang.String"></select>
+</mapper>
