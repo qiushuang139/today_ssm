@@ -13,6 +13,8 @@ public interface TomatoClockService {
     int OverTomatoClock(TomatoClock tomatoClock);
 
     TomatoClock getTomatoClockById(int tomatoClockID);
+
     int SleepTomatoClock(TomatoClock tomatoClock);
-    int getTomatoClockID ();
+
+    int getTomatoClockID();
 }

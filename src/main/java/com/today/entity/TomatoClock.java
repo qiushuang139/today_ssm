@@ -33,15 +33,13 @@ public class TomatoClock {
     public void setTomatoClockID(int tomatoClockID) {
         this.tomatoClockID = tomatoClockID;
     }
-
+int userId;
     //番茄钟
    private int tomatoClockID;
     //待办ID
     protected int  todoID;
     //类型
-    private enum type{
-        Suspend,Continue,Distraction, Abandon,Giveup
-    };
+    private int type ;
 
     public int getSingelRestDuration() {
         return singelRestDuration;
@@ -86,4 +84,6 @@ public class TomatoClock {
 
     //小结
     protected String summry;
+    //bgm
+    private  String bgmUrl;
 }

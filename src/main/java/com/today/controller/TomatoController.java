@@ -32,18 +32,21 @@ import com.today.service.TomatoClockService;
 import com.today.service.TomatoClockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
+import java.util.Map;
 
 @RestController
-@RequestMapping("/tomato")
+@RequestMapping("/tomatoclock")
 public class TomatoController {
-@Autowired
-private TodoService todoService;
+    @Autowired
+    private TodoService todoService;
     //  @Qualifier("tomatoClockService")
 
+
+    @Qualifier("tomatoClockImpl")
+    @Autowired
     private TomatoClockService tomatoClockService;
 
     /**
@@ -77,7 +80,7 @@ private TodoService todoService;
     }
 
     @RequestMapping("/getTomatoClockById/{tomatoClockID}")
-    public TomatoClock getTomatoClockById(int tomatoClockID) {
+    public TomatoClock getTomatoClockById(@PathVariable("tomatoClockID") int tomatoClockID) {
         return tomatoClockService.getTomatoClockById(tomatoClockID);
     }
     @RequestMapping("/SleepTomatoClock")

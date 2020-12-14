@@ -30,7 +30,6 @@ import com.today.dao.TomatoClockDao;
 import com.today.entity.Todo;
 import com.today.entity.TomatoClock;
 import com.today.service.TomatoClockService;
-import com.today.service.TomatoClockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,41 +38,41 @@ public class TomatoClockImpl implements TomatoClockService{
     @Autowired
     private TodoDao todoDao;
     @Autowired
-    private TomatoClockDao tomatoClockDao;
+    private TomatoClockDao TomatoClockDao;
 
     @Override
     public int addTomatoClock(TomatoClock tomatoClock) {
-        return tomatoClockDao.addTomatoClock(tomatoClock);
+        return TomatoClockDao.addTomatoClock(tomatoClock);
     }
 
     @Override
     public int updateTomatoClock(TomatoClock tomatoClock) {
-        return tomatoClockDao.updateTomatoClock(tomatoClock);
+        return TomatoClockDao.updateTomatoClock(tomatoClock);
     }
 
     @Override
     public int SetTomatoClockState(TomatoClock tomatoClock, Todo todo) {
-        return tomatoClockDao.SetTomatoClockState(tomatoClock,todo);
+        return TomatoClockDao.SetTomatoClockState(tomatoClock,todo);
     }
 
     @Override
     public int OverTomatoClock(TomatoClock tomatoClock) {
-        return tomatoClockDao.OverTomatoClock(tomatoClock);
+        return TomatoClockDao.OverTomatoClock(tomatoClock);
     }
 
     @Override
     public TomatoClock getTomatoClockById(int tomatoClockID) {
-        return tomatoClockDao.getTomatoClockById(tomatoClockID);
+        return TomatoClockDao.getTomatoClockById(tomatoClockID);
     }
 
     @Override
     public int SleepTomatoClock(TomatoClock tomatoClock) {
-        return tomatoClockDao.SleepTomatoClock(tomatoClock);
+        return TomatoClockDao.SleepTomatoClock(tomatoClock);
     }
 
     @Override
     public int getTomatoClockID() {
-        return tomatoClockDao.getTomatoClockId();
+        return TomatoClockDao.getTomatoClockId();
     }
 
 //    @Override
@@ -87,7 +86,7 @@ public class TomatoClockImpl implements TomatoClockService{
 //    }
 
     public void setTomatoClockDao(TomatoClockDao tomatoClockDao) {
-        this.tomatoClockDao = tomatoClockDao;
+        this.TomatoClockDao = tomatoClockDao;
     }
 //
 //   public TomatoClockDao getTomatoClockDao() {

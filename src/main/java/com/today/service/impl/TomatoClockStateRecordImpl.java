@@ -13,6 +13,18 @@
  *
  * @author liyou
  * @create 2020/11/29
+ * @author liyou
+ * @create 2020/11/29
+ * @author liyou
+ * @create 2020/11/29
+ * @since 1.0.0
+ * <p>
+ * 〈一句话功能简述〉<br>
+ * 〈〉
+ * @since 1.0.0
+ * <p>
+ * 〈一句话功能简述〉<br>
+ * 〈〉
  * @since 1.0.0
  */
 /**
@@ -28,11 +40,14 @@ package com.today.service.impl;
 import com.today.dao.TomatoClockStateRecordDao;
 import com.today.entity.TomatoClock;
 import com.today.entity.TomatoClockStateRecord;
+import com.today.service.TomatoClockStateRecordService;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.*;
 
-public class TomatoClockStateRecordImpl {
+public class TomatoClockStateRecordImpl implements TomatoClockStateRecordService {
     private TomatoClockStateRecordDao tomatoClockStateRecordDao;
 
     public void setTomatoClockStateRecordDao(TomatoClockStateRecordDao tomatoClockStateRecordDao) {
@@ -44,17 +59,24 @@ public class TomatoClockStateRecordImpl {
         return tomatoClockStateRecordDao;
     }
 
+    @Override
+    public String getSummry() {
+        return null;
+    }
+    @Override
     //得到对应用户的番茄钟使用记录
-    public Map<Date,String> getRecord(@Param("userId") int userId){
-        Map<Date,String> map=new HashMap<>(){};
-     map.put( tomatoClockStateRecordDao.gettime(userId),tomatoClockStateRecordDao.getstatetype(userId));
-return  map;
+    public Map<Date, String> getRecord(@Param("userId") int userId) {
+        Map<Date, String> map = new HashMap<>() {
+        };
+        List<Integer> list = new ArrayList<>();
+        map.put(tomatoClockStateRecordDao.gettime(userId), tomatoClockStateRecordDao.getstatetype(userId));
+        return map;
 
     }
-
+    @Override
     //生成工作日志
- public  int generateDiary(@Param("userId")int userId){
-return tomatoClockStateRecordDao.generateDiary(userId);
- }
+    public int generateDiary(@Param("userId") int userId) {
+        return tomatoClockStateRecordDao.generateDiary(userId);
+    }
 
 }

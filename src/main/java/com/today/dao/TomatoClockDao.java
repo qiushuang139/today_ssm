@@ -4,6 +4,7 @@ import com.today.entity.Todo;
 import com.today.entity.TomatoClock;
 import org.apache.ibatis.annotations.Param;
 
+
 public interface TomatoClockDao {
 
     //新增番茄钟
@@ -16,6 +17,8 @@ public interface TomatoClockDao {
     int OverTomatoClock(TomatoClock tomatoCLock);
 
     int SleepTomatoClock(TomatoClock tomatoCLock);
+
     TomatoClock getTomatoClockById(@Param("tomatoClockId")int tomatoClockID);
+
     int getTomatoClockId();
 }

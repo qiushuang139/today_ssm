@@ -4,15 +4,15 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.today.dao.TomatoClockDao">
     <resultMap id="TomatoClockResultMap" type="com.today.entity.TomatoClock">
- <id property="tomatoClockId" column="tomato_clock_id"/> <!--番茄钟id-->
-        <result property="todoId" column="todo_id"/>
+ <id property="tomatoClockID" column="tomato_clock_id"/> <!--番茄钟id-->
+        <result property="todoID" column="todo_id"/>
         <result property="type" column="type"/>
-        <result property="singelDuration" column="singel_duration"/>
-        <result property="beginTime" column="begin_time "/>
+        <result property="singelRestDuration" column="singel_duration"/>
+        <result property="beiginTime" column="begin_time "/>
         <result property="userId" column="user_id"/>
         <result property="singelRestDuration" column="singel_rest_duration"/>
         <result property="repeatTimes" column="repeat_times"/>
-        <result property="summay" column="summay"/>
+        <result property="summry" column="summay"/>
         <result property="bgmUrl" column="bgm_url"/>
 
     </resultMap>
@@ -34,17 +34,14 @@
             set (type=#{type})
             where tomato_clock_id=#{tomatoClockId}
             </update>
-    <update id="getTomatoClockById" parameterType="com.today.entity.TomatoClock">
-SEARCH *
-WEHRER tomato_clock_id=#{tomatoClockId}
-    </update>
+
     <update id="SleepTomatoClock"  parameterType="com.today.entity.TomatoClock">
         update tomatoClock
         set(type ="Suspend")
     </update>
-    <select id="getTomatoClockById" parameterType="com.today.entity.TomatoClock">
+    <select id="getTomatoClockById"  resultMap="TomatoClockResultMap">
         search  *
-        into tomatoClock
+        from tomatoClock
         where tomato_clock_id=#{tomatoClockId}
     </select>
 

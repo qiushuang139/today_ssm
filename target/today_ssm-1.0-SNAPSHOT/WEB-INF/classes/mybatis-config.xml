@@ -12,5 +12,7 @@
         <mapper resource="com.today.dao/TodoMapper.xml"/>
         <mapper resource="com.today.dao/ScheduleMapper.xml"/>
         <mapper resource="com.today.dao/TodoRealationshipMapper.xml"/>
+        <mapper resource="com.today.dao/TomatoClockMapper.xml"/>
+        <mapper resource="com.today.dao/TomatoClockStateRecordMapper.xml"/>
     </mappers>
 </configuration>

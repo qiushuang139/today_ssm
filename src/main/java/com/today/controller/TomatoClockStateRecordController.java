@@ -28,8 +28,14 @@ package com.today.controller;
 import com.today.entity.TomatoClockStateRecord;
 import com.today.service.TomatoClockStateRecordService;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
+import java.util.Map;
+@RestController
+@RequestMapping("/tomatoClcokStateRecord")
 public class TomatoClockStateRecordController {
 private TomatoClockStateRecordService tomatoClockStateRecordService;
 @RequestMapping("/setSummry")
@@ -42,11 +48,11 @@ return tomatoClockStateRecordService.getSummry();
 };
 
 @RequestMapping("/getRecord/{userId}")
-  public TomatoClockStateRecord getRecord(@Param("userId") int userId){
+  public Map<Date,String> getRecord(@PathVariable("userId") int userId){
  return tomatoClockStateRecordService.getRecord(userId);
 };
     @RequestMapping("/generateDiary/{userId}")
-    public  int generateDiary(@Param("userId")int userId){
+    public  int generateDiary(@PathVariable("userId")int userId){
  return  tomatoClockStateRecordService.generateDiary(userId);
     };
 }
