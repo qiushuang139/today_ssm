@@ -46,7 +46,7 @@
         where schedule_id=#{scheduleId}
     </select>
 
-    <select id="getScheduleByUserId" resultType="com.today.entity.Schedule">
+    <select id="getScheduleByUserId" resultMap="ScheduleResultMap">
         select *
         from schedule
         where user_id=#{userId}

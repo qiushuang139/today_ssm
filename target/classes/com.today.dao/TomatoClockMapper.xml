@@ -46,6 +46,8 @@
         from tomatoclock
         where tomato_clock_id=#{tomatoClockID}
     </select>
-    <select id="getTomatoClockId" resultType="java.lang.Integer"></select>
+    <select id="getTomatoClockId" resultType="java.lang.Integer">
+
+    </select>
 
 </mapper>

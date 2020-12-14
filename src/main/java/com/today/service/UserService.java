@@ -18,4 +18,6 @@ public interface UserService {
     int updateUser(User user);
 
     int getMaxUserId();
+
+    boolean isExists(int userId);
 }

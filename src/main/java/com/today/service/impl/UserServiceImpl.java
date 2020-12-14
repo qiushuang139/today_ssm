@@ -44,7 +44,13 @@ public class UserServiceImpl implements UserService {
         return userDao.getMaxUserId();
     }
 
+    @Override
+    public boolean isExists(int userId) {
+        return userDao.isExists(userId)>0;
+    }
+
     public void setUserDao(UserDao userDao) {
         this.userDao=userDao;
     }
+
 }

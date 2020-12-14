@@ -19,4 +19,6 @@ public interface UserDao {
 
     int getMaxUserId();
 
+    int isExists(@Param("userId")int userId);
+
 }
