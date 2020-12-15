@@ -76,7 +76,7 @@ CREATE TABLE `tomatoclock` (
   `user_id` int NOT NULL COMMENT '关联的用户ID',
   `singel_rest_duration` tinyint DEFAULT NULL COMMENT '单词休息时长',
   `repeat_times` tinyint DEFAULT NULL COMMENT '重复次数',
-  `summay` varchar(60) DEFAULT NULL COMMENT '总结',
+  `summary` varchar(60) DEFAULT NULL COMMENT '总结',
   `bgm_url` varchar(60) DEFAULT NULL COMMENT 'bgmURL',
   PRIMARY KEY (`tomato_clock_id`,`user_id`),
   KEY `user_id` (`user_id`),
