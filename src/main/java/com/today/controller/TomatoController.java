@@ -13,6 +13,18 @@
  *
  * @author liyou
  * @create 2020/11/25
+ * @author liyou
+ * @create 2020/11/25
+ * @author liyou
+ * @create 2020/11/25
+ * @since 1.0.0
+ * <p>
+ * 〈一句话功能简述〉<br>
+ * 〈番茄钟控制的函数〉
+ * @since 1.0.0
+ * <p>
+ * 〈一句话功能简述〉<br>
+ * 〈番茄钟控制的函数〉
  * @since 1.0.0
  */
 /**
@@ -75,14 +87,16 @@ public class TomatoController {
      */
     @RequestMapping("/SetTomatoClockState")
     public int SetTomatoClockState(@RequestBody TomatoClock tomatoClock) {
-        Todo todo=todoService.getTodoByTodoId(todoService.getMaxTodoId());
+        Todo todo = todoService.getTodoByTodoId(todoService.getMaxTodoId());
         return tomatoClockService.SetTomatoClockState(tomatoClock, todo);
     }
 
     @RequestMapping("/getTomatoClockById/{tomatoClockID}")
     public TomatoClock getTomatoClockById(@PathVariable("tomatoClockID") int tomatoClockID) {
-        return tomatoClockService.getTomatoClockById(tomatoClockID);
+        TomatoClock t=tomatoClockService.getTomatoClockById(tomatoClockID);
+        return t;
     }
+
     @RequestMapping("/SleepTomatoClock")
     public int SleepTomatoClock(TomatoClock tomatoClock) {
         return tomatoClockService.SleepTomatoClock(tomatoClock);

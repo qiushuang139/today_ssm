@@ -34,4 +34,9 @@
         select max(user_id)
         from user;
     </select>
+    <select id="isExists" resultType="java.lang.Integer">
+        select count(*)
+        from user
+        where user_id=#{userId}
+    </select>
 </mapper>

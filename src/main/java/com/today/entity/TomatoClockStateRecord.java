@@ -13,6 +13,12 @@
  *
  * @author liyou
  * @create 2020/11/29
+ * @author liyou
+ * @create 2020/11/29
+ * @since 1.0.0
+ * <p>
+ * 〈一句话功能简述〉<br>
+ * 〈番茄钟状态变化记录表〉
  * @since 1.0.0
  */
 /**
@@ -27,9 +33,28 @@ package com.today.entity;
 
 import java.util.Map;
 
-public class TomatoClockStateRecord extends  TomatoClock {
-//状态类型
-     private int statetype;
+public class TomatoClockStateRecord extends TomatoClock {
+    protected int userId;
+    //状态类型
+    private int statetype;
+
+    @Override
+    public int getTomatoClockID() {
+        return tomatoClockID;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    @Override
+    public void setTomatoClockID(int tomatoClockID) {
+        this.tomatoClockID = tomatoClockID;
+    }
 
     public int getTime() {
         return time;
@@ -38,6 +63,7 @@ public class TomatoClockStateRecord extends  TomatoClock {
     public void setTime(int time) {
         this.time = time;
     }
+
     //状态变化时间
     private int time;
     //关联番茄钟ID
@@ -52,11 +78,12 @@ public class TomatoClockStateRecord extends  TomatoClock {
     }
 
     //
-    public TomatoClockStateRecord( ){
+    public TomatoClockStateRecord() {
 
     }
+
     //生成工作日志
-    public String getSummry()  {
+    public String getSummry() {
         return super.summry;
     }
 

@@ -7,9 +7,9 @@
         <id property="tomatoClockID" column="tomato_clock_id"/> <!--番茄钟id-->
         <result property="todoID" column="todo_id"/>
         <result property="type" column="type"/>
-        <result property="singelRestDuration" column="singel_duration"/>
+        <result property="singelDuration" column="singel_duration"/>
         <result property="beiginTime" column="begin_time "/>
-        <result property="userId" column="user_id"/>
+        <result property="userID" column="user_id"/>
         <result property="singelRestDuration" column="singel_rest_duration"/>
         <result property="repeatTimes" column="repeat_times"/>
         <result property="summry" column="summay"/>
@@ -19,35 +19,37 @@
     <insert id="addTomatoClock" parameterType="com.today.entity.TomatoClock">
         insert
         into tomatoclock
-        values (#{tomatoClockId},#{type},#{singelDuration},#{beginTime},#{userId},#{singelRestDuration},#{repeatTimes},
-        #{summay},#{bgmUrl})
+        values (#{tomatoClockID},#{todoID},#{type},#{singelDuration},#{beginTime},#{userID},#{singelRestDuration},#{repeatTimes},
+        #{summry},#{bgmUrl})
     </insert>
     <update id="updateTomatoClock" parameterType="com.today.entity.TomatoClock">
         update tomatoclock
-        set( tomato_clock_id=#{tomatoClockId},todo_id=#{todoId},type=#{type},singel_duration=#{singelDuration}
-        ,begin_time=#{beginTime},user_id=#{userId},singel_rest_duration=#singelRestDuration},
-        repeat_times=#{repeatTimes},summay=#{summay},bgm_url=#{bgmUrl})
-        where todo_id=#{todoId}
+        set( tomato_clock_id=#{tomatoClockID},todo_id=#{todoID},type=#{type},singel_duration=#{singelDuration}
+        ,begin_time=#{beginTime},user_id=#{userID},singel_rest_duration=#singelRestDuration},
+        repeat_times=#{repeatTimes},summry=#{summay},bgm_url=#{bgmUrl})
+        where tomato_clock_id=#{tomatoClockID}
     </update>
     <update id="SetTomatoClockState" parameterType="com.today.entity.TomatoClock">
             update tomatoclock
             set (type=#{type})
-            where tomato_clock_id=#{tomatoClockId}
+            where tomato_clock_id=#{tomatoClockID}
             </update>
 
     <update id="SleepTomatoClock"  parameterType="com.today.entity.TomatoClock">
         update tomatoclock
-        set(type ="Suspend")
+        set type=1
+        where tomato_clock_id=#{tomatoClockID}
     </update>
-    <update id="OverTomatoClock"></update>
+    <update id="OverTomatoClock">
+    update tomatoclock
+        set type=2
+        where tomato_clock_id=#{tomatoClockID}
+    </update>
 
     <select id="getTomatoClockById"  resultMap="TomatoClockResultMap">
         select  *
         from tomatoclock
         where tomato_clock_id=#{tomatoClockID}
-    </select>
-    <select id="getTomatoClockId" resultType="java.lang.Integer">
-
     </select>
 
 </mapper>

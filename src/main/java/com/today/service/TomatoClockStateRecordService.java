@@ -10,9 +10,9 @@ public interface TomatoClockStateRecordService {
     String getSummry();
 
     //得到对应用户的番茄钟使用记录
-    Map<Date, String> getRecord(@Param("userId") int userId);
+    Map<Date, String> getRecord(@Param("tomatoClockID") int tomatoClockID);
 
     //生成工作日志
-    int generateDiary(@Param("userId") int userId);
+    int generateDiary(@Param("tomatoClockID") int tomatoClockID);
 
 }

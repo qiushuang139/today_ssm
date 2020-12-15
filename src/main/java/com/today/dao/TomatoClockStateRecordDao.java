@@ -11,9 +11,9 @@ public interface TomatoClockStateRecordDao {
     //新增总结
     String getSummry(TomatoClockStateRecord tomatoClockStateRecord);
     //得到对应用户的番茄钟使用记录
-   Map<Date,String> getRecord(@Param("userId") int userId);
+   Map<Date,String> getRecord(@Param("tomatoClockID") int tomatoClockID);
     //生成工作日志
-    int generateDiary(@Param("userId")int userId);
-   Date gettime(int userId);
-    String  getstatetype(int userId);
+    int generateDiary(@Param("tomatoClockID")int tomatoClockID);
+   Date gettime(int tomatoClockID);
+    String  getstatetype(int tomatoClockID);
 }

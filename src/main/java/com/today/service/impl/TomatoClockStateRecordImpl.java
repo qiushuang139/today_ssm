@@ -65,18 +65,18 @@ public class TomatoClockStateRecordImpl implements TomatoClockStateRecordService
     }
     @Override
     //得到对应用户的番茄钟使用记录
-    public Map<Date, String> getRecord(@Param("userId") int userId) {
+    public Map<Date, String> getRecord(@Param("tomatoClockID") int tomatoClockID) {
         Map<Date, String> map = new HashMap<>() {
         };
         List<Integer> list = new ArrayList<>();
-        map.put(tomatoClockStateRecordDao.gettime(userId), tomatoClockStateRecordDao.getstatetype(userId));
+        map.put(tomatoClockStateRecordDao.gettime(tomatoClockID), tomatoClockStateRecordDao.getstatetype(tomatoClockID));
         return map;
 
     }
     @Override
     //生成工作日志
-    public int generateDiary(@Param("userId") int userId) {
-        return tomatoClockStateRecordDao.generateDiary(userId);
+    public int generateDiary(@Param("tomatoClockID") int tomatoClockID) {
+        return tomatoClockStateRecordDao.generateDiary(tomatoClockID);
     }
 
 }
