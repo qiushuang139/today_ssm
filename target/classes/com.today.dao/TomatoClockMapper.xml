@@ -12,7 +12,7 @@
         <result property="userID" column="user_id"/>
         <result property="singelRestDuration" column="singel_rest_duration"/>
         <result property="repeatTimes" column="repeat_times"/>
-        <result property="summry" column="summay"/>
+        <result property="summary" column="summary"/>
         <result property="bgmUrl" column="bgm_url"/>
 
     </resultMap>
@@ -20,22 +20,22 @@
         insert
         into tomatoclock
         values (#{tomatoClockID},#{todoID},#{type},#{singelDuration},#{beginTime},#{userID},#{singelRestDuration},#{repeatTimes},
-        #{summry},#{bgmUrl})
+        #{summary},#{bgmUrl})
     </insert>
     <update id="updateTomatoClock" parameterType="com.today.entity.TomatoClock">
         update tomatoclock
-        set( tomato_clock_id=#{tomatoClockID},todo_id=#{todoID},type=#{type},singel_duration=#{singelDuration}
-        ,begin_time=#{beginTime},user_id=#{userID},singel_rest_duration=#singelRestDuration},
-        repeat_times=#{repeatTimes},summry=#{summay},bgm_url=#{bgmUrl})
+        set tomato_clock_id=#{tomatoClockID},todo_id=#{todoID},type=#{type},singel_duration=#{singelDuration}
+        ,begin_time=#{beginTime},user_id=#{userID},singel_rest_duration=#{singelRestDuration},
+        repeat_times=#{repeatTimes},summary=#{summary},bgm_url=#{bgmUrl}
         where tomato_clock_id=#{tomatoClockID}
     </update>
     <update id="SetTomatoClockState" parameterType="com.today.entity.TomatoClock">
             update tomatoclock
-            set (type=#{type})
+            set type=#{type}
             where tomato_clock_id=#{tomatoClockID}
             </update>
 
-    <update id="SleepTomatoClock"  parameterType="com.today.entity.TomatoClock">
+    <update id="SleepTomatoClock" parameterType="com.today.entity.TomatoClock">
         update tomatoclock
         set type=1
         where tomato_clock_id=#{tomatoClockID}
@@ -45,12 +45,34 @@
         set type=2
         where tomato_clock_id=#{tomatoClockID}
     </update>
+    <update id="setSummary">
+        update tomatoclock
+        set summmary=#{summary}
+        where user_id=#{userID}
+    </update>
+    <delete id="deleteTomatoClockByTomatoClockId">
+        delete tomatoclockstaterecord,tomatoclock
+        from  tomatoclock left join tomatoclockstaterecord
+        on tomatoclock.tomato_clock_id=tomatoclockstaterecord.tomato_clock_id
+        where tomatoclock.tomato_clock_id=#{tomatoClockID}
+    </delete>
+    <delete id="deleteTomatoClockByuserID">
+        DELETE
+        FROM
+	       tomatoclock
+        WHERE
+	       tomatoclock.user_id =#{userID}
+    </delete>
 
-    <select id="getTomatoClockById"  resultMap="TomatoClockResultMap">
+
+    <select id="getTomatoClockById" resultMap="TomatoClockResultMap">
         select  *
         from tomatoclock
         where tomato_clock_id=#{tomatoClockID}
     </select>
-
+    <select id="getTomatoClockId" resultType="java.lang.Integer">
+        select max(tomato_clock_id)
+        from tomatoclock
+    </select>
 
 </mapper>

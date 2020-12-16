@@ -13,6 +13,12 @@
  *
  * @author liyou
  * @create 2020/11/18
+ * @author liyou
+ * @create 2020/11/18
+ * @since 1.0.0
+ * <p>
+ * 〈一句话功能简述〉<br>
+ * 〈tomatoclock实体类〉
  * @since 1.0.0
  */
 /**
@@ -28,9 +34,26 @@ package com.today.entity;
 import java.util.Date;
 
 public class TomatoClock {
-    private int tomatoClockID; //番茄钟
+    //单次时间
     private int singelDuration;
-    private int userID;
+    //用户ID
+    int userID;
+    //番茄钟
+    private int tomatoClockID;
+    //待办ID
+    protected int todoID;
+    //类型
+    private int type;
+    //单次休息时长
+    private int singelRestDuration;
+    //开始时间
+    private Date beginTime;
+    //预计重复次数
+    private int repeatTimes;
+    //小结
+    protected String summary;
+    //bgm
+    private String bgmUrl;
 
     public int getTomatoClockID() {
         return tomatoClockID;
@@ -72,13 +95,6 @@ public class TomatoClock {
         this.singelDuration = singelDuration;
     }
 
-    //
-
-
-    //待办ID
-    private int  todoID;
-    //类型
-    private int type ;
 
     public int getSingelRestDuration() {
         return singelRestDuration;
@@ -88,19 +104,15 @@ public class TomatoClock {
         this.singelRestDuration = singelRestDuration;
     }
 
-    //单次休息时长
-    private int singelRestDuration;
 
-    public Date getBeginTime() {
+    public Date getBeiginTime() {
         return beginTime;
     }
 
-    public void setBeginTime(Date beginTime) {
-        this.beginTime = beginTime;
+    public void setBeiginTime(Date beiginTime) {
+        this.beginTime = beiginTime;
     }
 
-    //开始时间
-    private Date beginTime;
 
     public int getRepeatTimes() {
         return repeatTimes;
@@ -110,15 +122,13 @@ public class TomatoClock {
         this.repeatTimes = repeatTimes;
     }
 
-    //预计重复次数
-    private int repeatTimes;
 
-    public String getSummry() {
-        return summry;
+    public String getSummary() {
+        return summary;
     }
 
-    public void setSummry(String summry) {
-        this.summry = summry;
+    public void setSummary(String summary) {
+        this.summary = summary;
     }
 
     public String getBgmUrl() {
@@ -129,8 +139,5 @@ public class TomatoClock {
         this.bgmUrl = bgmUrl;
     }
 
-    //小结
-    private String summry;
-    //bgm
-    private  String bgmUrl;
+
 }

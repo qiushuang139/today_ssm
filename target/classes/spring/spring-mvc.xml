@@ -21,7 +21,7 @@
 
     <mvc:annotation-driven>
         <mvc:argument-resolvers>
-            <bean class="com.today.component.CurrentUserMethodArgumentResolver"/>
+            <bean class="com.today.component.annotation.CurrentUserMethodArgumentResolver"/>
         </mvc:argument-resolvers>
     </mvc:annotation-driven>
 
@@ -29,11 +29,11 @@
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
 <!--            <mvc:exclude-mapping path="/tokens"/>-->
-            <bean class="com.today.component.AuthorizationInterceptor"></bean>
+            <bean class="com.today.component.annotation.AuthorizationInterceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>
 
-    <bean class="com.today.component.CurrentUserMethodArgumentResolver">
+    <bean class="com.today.component.annotation.CurrentUserMethodArgumentResolver">
     </bean>
 
     <!--4.视图解析器-->

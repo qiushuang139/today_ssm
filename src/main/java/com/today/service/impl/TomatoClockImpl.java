@@ -13,6 +13,72 @@
  *
  * @author liyou
  * @create 2020/11/18
+ * @author liyou
+ * @create 2020/11/18
+ * @author liyou
+ * @create 2020/11/18
+ * @author liyou
+ * @create 2020/11/18
+ * @author liyou
+ * @create 2020/11/18
+ * @author liyou
+ * @create 2020/11/18
+ * @author liyou
+ * @create 2020/11/18
+ * @author liyou
+ * @create 2020/11/18
+ * @author liyou
+ * @create 2020/11/18
+ * @author liyou
+ * @create 2020/11/18
+ * @author liyou
+ * @create 2020/11/18
+ * @author liyou
+ * @create 2020/11/18
+ * @since 1.0.0
+ * <p>
+ * 〈一句话功能简述〉<br>
+ * 〈番茄钟实现类〉
+ * @since 1.0.0
+ * <p>
+ * 〈一句话功能简述〉<br>
+ * 〈番茄钟实现类〉
+ * @since 1.0.0
+ * <p>
+ * 〈一句话功能简述〉<br>
+ * 〈番茄钟实现类〉
+ * @since 1.0.0
+ * <p>
+ * 〈一句话功能简述〉<br>
+ * 〈番茄钟实现类〉
+ * @since 1.0.0
+ * <p>
+ * 〈一句话功能简述〉<br>
+ * 〈番茄钟实现类〉
+ * @since 1.0.0
+ * <p>
+ * 〈一句话功能简述〉<br>
+ * 〈番茄钟实现类〉
+ * @since 1.0.0
+ * <p>
+ * 〈一句话功能简述〉<br>
+ * 〈番茄钟实现类〉
+ * @since 1.0.0
+ * <p>
+ * 〈一句话功能简述〉<br>
+ * 〈番茄钟实现类〉
+ * @since 1.0.0
+ * <p>
+ * 〈一句话功能简述〉<br>
+ * 〈番茄钟实现类〉
+ * @since 1.0.0
+ * <p>
+ * 〈一句话功能简述〉<br>
+ * 〈番茄钟实现类〉
+ * @since 1.0.0
+ * <p>
+ * 〈一句话功能简述〉<br>
+ * 〈番茄钟实现类〉
  * @since 1.0.0
  */
 /**
@@ -33,10 +99,8 @@ import com.today.service.TomatoClockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-
 @Service
-public class TomatoClockImpl implements TomatoClockService{
+public class TomatoClockImpl implements TomatoClockService {
     @Autowired
     private TodoDao todoDao;
     @Autowired
@@ -53,8 +117,8 @@ public class TomatoClockImpl implements TomatoClockService{
     }
 
     @Override
-    public int SetTomatoClockState(TomatoClock tomatoClock, Todo todo) {
-        return TomatoClockDao.SetTomatoClockState(tomatoClock,todo);
+    public int SetTomatoClockState(TomatoClock tomatoClock) {
+        return TomatoClockDao.SetTomatoClockState(tomatoClock);
     }
 
     @Override
@@ -64,9 +128,7 @@ public class TomatoClockImpl implements TomatoClockService{
 
     @Override
     public TomatoClock getTomatoClockById(int tomatoClockID) {
-
-        TomatoClock t=TomatoClockDao.getTomatoClockById(tomatoClockID);
-        return t;
+        return TomatoClockDao.getTomatoClockById(tomatoClockID);
     }
 
     @Override
@@ -80,12 +142,21 @@ public class TomatoClockImpl implements TomatoClockService{
     }
 
     @Override
-    public Date gettest(int id) {
-//        return TomatoClockDao.getTomatoClockTime(id);
-        return null;
+    public int deleteTomatoClockByTomatoClockId(int tomatoclockID) {
+        return TomatoClockDao.deleteTomatoClockByTomatoClockId(tomatoclockID);
     }
 
-    //    @Override
+    @Override
+    public int deleteTomatoClockByuserID(int userID) {
+        return TomatoClockDao.deleteTomatoClockByuserID(userID);
+    }
+
+    @Override
+    public int setSummary(int userID) {
+        return TomatoClockDao.setSummary(userID);
+    }
+
+//    @Override
 //    public int getTomatoClockID() {
 //        return tomatoClockDao.getTomatoClockById(tomatoClockID);
 //    }
@@ -98,5 +169,8 @@ public class TomatoClockImpl implements TomatoClockService{
     public void setTomatoClockDao(TomatoClockDao tomatoClockDao) {
         this.TomatoClockDao = tomatoClockDao;
     }
-
+//
+//   public TomatoClockDao getTomatoClockDao() {
+//    return 0;
+//    }
 }
