@@ -2,14 +2,14 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.today.dao.TodoRealationshipDao">
+<mapper namespace="com.today.dao.TodoRelationshipDao">
 
-    <insert id="addTodoRealationShip" parameterType="com.today.entity.TodoRealationship">
+    <insert id="addTodoRealationShip" parameterType="com.today.entity.TodoRelationship">
         insert
         into todorealationship
         values (#{childTodoId},#{parentTodoId})
     </insert>
-    <delete id="deleteTodoRealationshipByTodoId">
+    <delete id="deleteTodoRelationshipByTodoId">
         delete
         from todorealationship
         where child_todo_id=#{todoId}

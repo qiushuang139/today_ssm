@@ -3,7 +3,7 @@ package com.today.service.impl;
 import com.today.component.Constants;
 import com.today.dao.ScheduleDao;
 import com.today.dao.TodoDao;
-import com.today.dao.TodoRealationshipDao;
+import com.today.dao.TodoRelationshipDao;
 import com.today.entity.Schedule;
 import com.today.service.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     private TodoDao todoDao;
 
     @Autowired
-    private TodoRealationshipDao todoRealationshipDao;
+    private TodoRelationshipDao todoRelationshipDao;
 
     @Override
     public int addSchedule(Schedule schedule) {
@@ -35,7 +35,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     public int deleteScheduleByScheduleId(int scheduleId) {
         List<Integer> todoIds=todoDao.getTodoIdsByScheduleId(scheduleId);//删除todo记录
         for(Integer id:todoIds){
-                todoRealationshipDao.deleteTodoRealationshipByTodoId(id);
+                todoRelationshipDao.deleteTodoRelationshipByTodoId(id);
                 todoDao.deleteTodoByTodoId(id);//删除todo
         }
         return scheduleDao.deleteScheduleByScheduleId(scheduleId);

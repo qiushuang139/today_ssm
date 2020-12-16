@@ -2,7 +2,7 @@ package com.today.service.impl;
 
 import com.today.dao.ScheduleDao;
 import com.today.dao.TodoDao;
-import com.today.dao.TodoRealationshipDao;
+import com.today.dao.TodoRelationshipDao;
 import com.today.dao.UserDao;
 import com.today.entity.User;
 import com.today.service.UserService;
@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
     private TodoDao todoDao;
 
     @Autowired
-    private TodoRealationshipDao todoRealationshipDao;
+    private TodoRelationshipDao todoRelationshipDao;
 
 
     @Override
@@ -69,7 +69,7 @@ public class UserServiceImpl implements UserService {
         for (Integer scheduleId:scheduleIds){
             List<Integer> todoIds=todoDao.getTodoIdsByScheduleId(scheduleId);
             for(Integer todoId:todoIds){
-                todoRealationshipDao.deleteTodoRealationshipByTodoId(todoId);
+                todoRelationshipDao.deleteTodoRelationshipByTodoId(todoId);
                 todoDao.deleteTodoByTodoId(todoId);
             }
             scheduleDao.deleteScheduleByScheduleId(scheduleId);

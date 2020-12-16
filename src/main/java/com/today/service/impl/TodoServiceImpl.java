@@ -2,9 +2,9 @@ package com.today.service.impl;
 
 import com.today.component.Constants;
 import com.today.dao.TodoDao;
-import com.today.dao.TodoRealationshipDao;
+import com.today.dao.TodoRelationshipDao;
 import com.today.entity.Todo;
-import com.today.entity.TodoRealationship;
+import com.today.entity.TodoRelationship;
 import com.today.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,9 +28,9 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Autowired
-    private TodoRealationshipDao todoRealationshipDao;
-    public void setTodoRealationshipDao(TodoRealationshipDao todoRealationshipDao) {
-        this.todoRealationshipDao=todoRealationshipDao;
+    private TodoRelationshipDao todoRelationshipDao;
+    public void setTodoRelationshipDao(TodoRelationshipDao todoRelationshipDao) {
+        this.todoRelationshipDao = todoRelationshipDao;
     }
 
     @Override
@@ -45,14 +45,14 @@ public class TodoServiceImpl implements TodoService {
 
     @Override
     public int deleteTodoByTodoId(int todoId) {
-        todoRealationshipDao.deleteTodoRealationshipByTodoId(todoId);
+        todoRelationshipDao.deleteTodoRelationshipByTodoId(todoId);
         return todoDao.deleteTodoByTodoId(todoId);
     }
 
 
     @Override
-    public int deleteTodoRealationshipByTodoId(int todoId) {
-        return todoRealationshipDao.deleteTodoRealationshipByTodoId(todoId);
+    public int deleteTodoRelationshipByTodoId(int todoId) {
+        return todoRelationshipDao.deleteTodoRelationshipByTodoId(todoId);
     }
 
     @Override
@@ -72,16 +72,16 @@ public class TodoServiceImpl implements TodoService {
 
     @Override
     public int setChildTodoId(int childTodoId, int parentTodoId) {
-        TodoRealationship realationship=new TodoRealationship();
+        TodoRelationship realationship=new TodoRelationship();
         realationship.setChildTodoId(childTodoId);
         realationship.setParentTodoId(parentTodoId);
-        return todoRealationshipDao.addTodoRealationShip(realationship);
+        return todoRelationshipDao.addTodoRealationShip(realationship);
     }
 
     @Override
     public List<Todo> getChildTodos(int todoId,int page) {
         List<Todo> ans=new ArrayList<>();
-        List<Integer> childTodoIds=todoRealationshipDao.getChildTodoIdList(todoId,page,Constants.TODO_PAGE_SIZE);
+        List<Integer> childTodoIds= todoRelationshipDao.getChildTodoIdList(todoId,page,Constants.TODO_PAGE_SIZE);
         for (Integer childTodoId:childTodoIds) {
             ans.add(todoDao.getTodoByTodoId(childTodoId));
         }
@@ -91,7 +91,7 @@ public class TodoServiceImpl implements TodoService {
     @Override
     public List<Todo> getParentTodos(int todoId,int page) {
         List<Todo> ans=new ArrayList<>();
-        List<Integer> parentTodoIds=todoRealationshipDao.getParentTodoIdList(todoId,page, Constants.TODO_PAGE_SIZE);
+        List<Integer> parentTodoIds= todoRelationshipDao.getParentTodoIdList(todoId,page, Constants.TODO_PAGE_SIZE);
         for (Integer parentTodoId:parentTodoIds) {
             ans.add(todoDao.getTodoByTodoId(parentTodoId));
         }
@@ -104,8 +104,8 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public int deleteTodoRealationship(int childTodoId, int parentTodoId) {
-        return todoRealationshipDao.
+    public int deleteTodoRelationship(int childTodoId, int parentTodoId) {
+        return todoRelationshipDao.
                 deleteTodoRealationshipByBothTodoId(childTodoId,parentTodoId);
     }
 
@@ -116,12 +116,12 @@ public class TodoServiceImpl implements TodoService {
 
     @Override
     public int getParentTodoNum(int todoId) {
-        return todoRealationshipDao.getParentTodoNum(todoId);
+        return todoRelationshipDao.getParentTodoNum(todoId);
     }
 
     @Override
     public int getChildTodoNum(int todoId) {
-        return todoRealationshipDao.getChildTodoNum(todoId);
+        return todoRelationshipDao.getChildTodoNum(todoId);
     }
 
     @Override

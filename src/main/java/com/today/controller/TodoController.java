@@ -96,7 +96,7 @@ public class TodoController {
     public ResponseEntity deleteTodoByTodoIdList(@RequestBody List<Integer> todoIdList){
         try {
             for (Integer todoId : todoIdList) {
-                todoService.deleteTodoRealationshipByTodoId(todoId);
+                todoService.deleteTodoRelationshipByTodoId(todoId);
                 todoService.deleteTodoByTodoId(todoId);
             }
             return new ResponseEntity(new ResultModel(HttpStatus.NO_CONTENT),HttpStatus.NO_CONTENT);

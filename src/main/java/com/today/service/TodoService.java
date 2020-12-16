@@ -18,7 +18,7 @@ public interface TodoService {
     int deleteTodoByTodoId(int todoId);
 
 
-    int deleteTodoRealationshipByTodoId(int todoId);
+    int deleteTodoRelationshipByTodoId(int todoId);
 
     Todo getTodoByTodoId(int todoId);
 
@@ -34,7 +34,7 @@ public interface TodoService {
 
     int getMaxTodoId();
 
-    int deleteTodoRealationship(int childTodoId,int parentTodoId);
+    int deleteTodoRelationship(int childTodoId, int parentTodoId);
 
     List<Integer> getTodoIdsByScheduleId(int scheduleId);
 

@@ -74,7 +74,7 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value = "/updatePassword",method =RequestMethod.POST)
+    @RequestMapping(value = "/update-password",method =RequestMethod.POST)
     @Authorization
     public ResponseEntity updatePassword(@CurrentUser UserPasswordRecord userPasswordRecord){
         try {

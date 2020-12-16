@@ -15,7 +15,7 @@
 
     <bean id="todoServiceImpl" class="com.today.service.impl.TodoServiceImpl">
         <property name="todoDao" ref="todoDao"/>
-        <property name="todoRealationshipDao" ref="todoRealationshipDao"/>
+        <property name="todoRelationshipDao" ref="todoRelationshipDao"/>
     </bean>
 
     <bean id="ScheduleServiceImpl" class="com.today.service.impl.ScheduleServiceImpl">

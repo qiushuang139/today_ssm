@@ -5,7 +5,7 @@ package com.today.entity;
  * @description:
  * @date :2020/11/24 14:58
  */
-public class TodoRealationship {
+public class TodoRelationship {
     private int childTodoId;
     private int parentTodoId;
 
