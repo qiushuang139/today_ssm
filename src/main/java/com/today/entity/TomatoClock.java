@@ -28,6 +28,10 @@ package com.today.entity;
 import java.util.Date;
 
 public class TomatoClock {
+    private int tomatoClockID; //番茄钟
+    private int singelDuration;
+    private int userID;
+
     public int getTomatoClockID() {
         return tomatoClockID;
     }
@@ -69,12 +73,10 @@ public class TomatoClock {
     }
 
     //
-    private  int singelDuration;
-    int userID;
-    //番茄钟
-   private int tomatoClockID;
+
+
     //待办ID
-    protected int  todoID;
+    private int  todoID;
     //类型
     private int type ;
 
@@ -89,16 +91,16 @@ public class TomatoClock {
     //单次休息时长
     private int singelRestDuration;
 
-    public Date getBeiginTime() {
-        return beiginTime;
+    public Date getBeginTime() {
+        return beginTime;
     }
 
-    public void setBeiginTime(Date beiginTime) {
-        this.beiginTime = beiginTime;
+    public void setBeginTime(Date beginTime) {
+        this.beginTime = beginTime;
     }
 
     //开始时间
-    private Date beiginTime;
+    private Date beginTime;
 
     public int getRepeatTimes() {
         return repeatTimes;
@@ -111,7 +113,7 @@ public class TomatoClock {
     //预计重复次数
     private int repeatTimes;
 
-    public String getSummry()  {
+    public String getSummry() {
         return summry;
     }
 
@@ -128,7 +130,7 @@ public class TomatoClock {
     }
 
     //小结
-    protected String summry;
+    private String summry;
     //bgm
     private  String bgmUrl;
 }

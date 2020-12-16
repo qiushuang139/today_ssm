@@ -3,6 +3,8 @@ package com.today.service;
 import com.today.entity.Todo;
 import com.today.entity.TomatoClock;
 
+import java.util.Date;
+
 public interface TomatoClockService {
     int addTomatoClock(TomatoClock tomatoClock);
 
@@ -17,4 +19,6 @@ public interface TomatoClockService {
     int SleepTomatoClock(TomatoClock tomatoClock);
 
     int getTomatoClockID();
+
+    Date gettest(int id);
 }

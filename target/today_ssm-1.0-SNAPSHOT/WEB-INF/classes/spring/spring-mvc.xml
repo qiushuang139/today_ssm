@@ -12,17 +12,34 @@
 
     <!--1.扫描包-->
     <context:component-scan base-package="com.today.controller"/>
+    <context:component-scan base-package="com.today.component"/>
 
     <!--2.静态资源过滤-->
     <mvc:default-servlet-handler/>
 
     <!--3.注解驱动-->
-    <mvc:annotation-driven/>
+
+    <mvc:annotation-driven>
+        <mvc:argument-resolvers>
+            <bean class="com.today.component.CurrentUserMethodArgumentResolver"/>
+        </mvc:argument-resolvers>
+    </mvc:annotation-driven>
+
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+<!--            <mvc:exclude-mapping path="/tokens"/>-->
+            <bean class="com.today.component.AuthorizationInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <bean class="com.today.component.CurrentUserMethodArgumentResolver">
+    </bean>
 
     <!--4.视图解析器-->
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/"/>
-        <property name="suffix" value=".jsp"/>
-    </bean>
+<!--    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
+<!--        <property name="prefix" value="/WEB-INF/"/>-->
+<!--        <property name="suffix" value=".jsp"/>-->
+<!--    </bean>-->
 
 </beans>

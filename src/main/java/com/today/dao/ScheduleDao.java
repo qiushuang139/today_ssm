@@ -22,7 +22,12 @@ public interface ScheduleDao {
 
     Schedule getScheduleByScheduleId(@Param("scheduleId")int scheduleId);
 
-    List<Schedule> getScheduleByUserId(@Param("userId")int userId);
+    List<Schedule> getScheduleByUserId(@Param("userId")int userId,@Param("page") int page,
+                                       @Param("pageSize")int pageSize);
 
     int getMaxScheduleId();
+
+    List<Integer> getScheduleIdsByUserId(@Param("userId") int userId);
+
+    int getScheduleNumByUserId(@Param("userId") int userId);
 }

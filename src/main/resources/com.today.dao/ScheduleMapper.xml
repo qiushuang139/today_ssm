@@ -50,12 +50,23 @@
         select *
         from schedule
         where user_id=#{userId}
+        order by schedule_id
+        limit #{page,jdbcType=INTEGER},#{pageSize}
     </select>
 
     <select id="getMaxScheduleId" resultType="java.lang.Integer">
         select max(schedule_id)
         from schedule
     </select>
-
+    <select id="getScheduleIdsByUserId" resultType="java.lang.Integer">
+        select schedule_id
+        from schedule
+        where user_id=#{userId}
+    </select>
+    <select id="getScheduleNumByUserId" resultType="java.lang.Integer">
+        select count(*)
+        from schedule
+        where user_id=#{userId}
+    </select>
 
 </mapper>

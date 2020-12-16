@@ -93,6 +93,7 @@ public class TomatoController {
 
     @RequestMapping("/getTomatoClockById/{tomatoClockID}")
     public TomatoClock getTomatoClockById(@PathVariable("tomatoClockID") int tomatoClockID) {
+        System.out.println(tomatoClockService.gettest(tomatoClockID).toString());
         TomatoClock t=tomatoClockService.getTomatoClockById(tomatoClockID);
         return t;
     }

@@ -33,6 +33,8 @@ import com.today.service.TomatoClockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 @Service
 public class TomatoClockImpl implements TomatoClockService{
     @Autowired
@@ -62,7 +64,9 @@ public class TomatoClockImpl implements TomatoClockService{
 
     @Override
     public TomatoClock getTomatoClockById(int tomatoClockID) {
-        return TomatoClockDao.getTomatoClockById(tomatoClockID);
+
+        TomatoClock t=TomatoClockDao.getTomatoClockById(tomatoClockID);
+        return t;
     }
 
     @Override
@@ -75,7 +79,13 @@ public class TomatoClockImpl implements TomatoClockService{
         return TomatoClockDao.getTomatoClockId();
     }
 
-//    @Override
+    @Override
+    public Date gettest(int id) {
+//        return TomatoClockDao.getTomatoClockTime(id);
+        return null;
+    }
+
+    //    @Override
 //    public int getTomatoClockID() {
 //        return tomatoClockDao.getTomatoClockById(tomatoClockID);
 //    }
@@ -88,8 +98,5 @@ public class TomatoClockImpl implements TomatoClockService{
     public void setTomatoClockDao(TomatoClockDao tomatoClockDao) {
         this.TomatoClockDao = tomatoClockDao;
     }
-//
-//   public TomatoClockDao getTomatoClockDao() {
-//    return 0;
-//    }
+
 }

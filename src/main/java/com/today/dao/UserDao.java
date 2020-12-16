@@ -21,4 +21,7 @@ public interface UserDao {
 
     int isExists(@Param("userId")int userId);
 
+    int deleteUser(int userId);
+
+    int updatePassword(@Param("userId") int userId,@Param("newPassword") String newPassword);
 }

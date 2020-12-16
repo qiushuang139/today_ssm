@@ -1,11 +1,15 @@
 package com.today.service.impl;
 
+import com.today.dao.ScheduleDao;
+import com.today.dao.TodoDao;
 import com.today.dao.TodoRealationshipDao;
 import com.today.dao.UserDao;
 import com.today.entity.User;
 import com.today.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author :zhangyi
@@ -17,6 +21,15 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private ScheduleDao scheduleDao;
+
+    @Autowired
+    private TodoDao todoDao;
+
+    @Autowired
+    private TodoRealationshipDao todoRealationshipDao;
 
 
     @Override
@@ -47,6 +60,26 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean isExists(int userId) {
         return userDao.isExists(userId)>0;
+    }
+
+    @Override
+    public int deleteUserByUserId(int userId) {
+        //删除所有与用户相关的信息
+        List<Integer> scheduleIds=scheduleDao.getScheduleIdsByUserId(userId);
+        for (Integer scheduleId:scheduleIds){
+            List<Integer> todoIds=todoDao.getTodoIdsByScheduleId(scheduleId);
+            for(Integer todoId:todoIds){
+                todoRealationshipDao.deleteTodoRealationshipByTodoId(todoId);
+                todoDao.deleteTodoByTodoId(todoId);
+            }
+            scheduleDao.deleteScheduleByScheduleId(scheduleId);
+        }
+        return userDao.deleteUser(userId);
+    }
+
+    @Override
+    public int updatePassword(int userId,String newPassword) {
+        return userDao.updatePassword(userId,newPassword);
     }
 
     public void setUserDao(UserDao userDao) {

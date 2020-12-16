@@ -26,27 +26,25 @@
     </bean>
     <bean id="TomatoClockStateRecordImpl" class="com.today.service.impl.TomatoClockStateRecordImpl">
         <property name="tomatoClockStateRecordDao" ref="tomatoClockStateRecordDao"/>
+    </bean>
+
+    <bean id="RedisTokenManager" class="com.today.component.RedisTokenManager">
+<!--        <property name="redis" ref=""-->
+    </bean>
+    <bean id="AuthorizationInterceptor" class="com.today.component.annotation.AuthorizationInterceptor">
 
     </bean>
 
-
-<!--    <bean id="lendServiceImpl" class="com.book.service.LendServiceImpl">-->
-<!--        <property name="lendDao" ref="lendDao"/>-->
+    <bean id="CurrentUserMethodArgumentResolver" class="com.today.component.annotation.CurrentUserMethodArgumentResolver">
+    </bean>
+<!--    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">-->
+<!--        <property name="interceptors">-->
+<!--            <list>-->
+<!--                <ref bean="AuthorizationInterceptor"/>-->
+<!--            </list>-->
+<!--        </property>-->
 <!--    </bean>-->
 
-<!--    <bean id="loginServiceImpl" class="com.book.service.LoginServiceImpl">-->
-<!--        <property name="readerCardDao" ref="readerCardDao"/>-->
-<!--        <property name="adminDao" ref="adminDao"/>-->
-<!--        <property name="readerInfoDao" ref="readerInfoDao"/>-->
-<!--    </bean>-->
-
-<!--    <bean id="readerCardServiceImpl" class="com.book.service.ReaderCardServiceImpl">-->
-<!--        <property name="readerCardDao" ref="readerCardDao"/>-->
-<!--    </bean>-->
-
-<!--    <bean id="readerInfoServiceImpl" class="com.book.service.ReaderInfoServiceImpl">-->
-<!--        <property name="readerInfoDao" ref="readerInfoDao"/>-->
-<!--    </bean>-->
 
     <bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>

@@ -8,7 +8,7 @@
         <result property="todoID" column="todo_id"/>
         <result property="type" column="type"/>
         <result property="singelDuration" column="singel_duration"/>
-        <result property="beiginTime" column="begin_time "/>
+        <result property="beginTime" column="begin_time"/>
         <result property="userID" column="user_id"/>
         <result property="singelRestDuration" column="singel_rest_duration"/>
         <result property="repeatTimes" column="repeat_times"/>
@@ -51,5 +51,6 @@
         from tomatoclock
         where tomato_clock_id=#{tomatoClockID}
     </select>
+
 
 </mapper>

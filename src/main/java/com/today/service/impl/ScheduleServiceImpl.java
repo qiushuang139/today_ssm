@@ -1,6 +1,9 @@
 package com.today.service.impl;
 
+import com.today.component.Constants;
 import com.today.dao.ScheduleDao;
+import com.today.dao.TodoDao;
+import com.today.dao.TodoRealationshipDao;
 import com.today.entity.Schedule;
 import com.today.service.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +20,12 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Autowired
     private ScheduleDao scheduleDao;
 
+    @Autowired
+    private TodoDao todoDao;
+
+    @Autowired
+    private TodoRealationshipDao todoRealationshipDao;
+
     @Override
     public int addSchedule(Schedule schedule) {
         return scheduleDao.addSchedule(schedule);
@@ -24,6 +33,11 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     @Override
     public int deleteScheduleByScheduleId(int scheduleId) {
+        List<Integer> todoIds=todoDao.getTodoIdsByScheduleId(scheduleId);//删除todo记录
+        for(Integer id:todoIds){
+                todoRealationshipDao.deleteTodoRealationshipByTodoId(id);
+                todoDao.deleteTodoByTodoId(id);//删除todo
+        }
         return scheduleDao.deleteScheduleByScheduleId(scheduleId);
     }
 
@@ -43,13 +57,18 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
-    public List<Schedule> getScheduleByUserId(int userId) {
-        return scheduleDao.getScheduleByUserId(userId);
+    public List<Schedule> getScheduleByUserId(int userId,int page) {
+        return scheduleDao.getScheduleByUserId(userId,page, Constants.SCHEDULE_PAGE_SIZE);
     }
 
     @Override
     public int getMaxScheduleId() {
         return scheduleDao.getMaxScheduleId();
+    }
+
+    @Override
+    public int getScheduleNumByUserId(int userId) {
+        return scheduleDao.getScheduleNumByUserId(userId);
     }
 
     public void setScheduleDao(ScheduleDao scheduleDao) {

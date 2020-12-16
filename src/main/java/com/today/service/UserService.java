@@ -20,4 +20,8 @@ public interface UserService {
     int getMaxUserId();
 
     boolean isExists(int userId);
+
+    int deleteUserByUserId(int userId);
+
+    int updatePassword(int userId,String newPassword);
 }

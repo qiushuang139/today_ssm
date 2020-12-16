@@ -33,25 +33,23 @@ package com.today.entity;
 
 import java.util.Map;
 
-public class TomatoClockStateRecord extends TomatoClock {
-    protected int userId;
+public class TomatoClockStateRecord {
+//    protected int userId;
     //状态类型
     private int statetype;
 
-    @Override
     public int getTomatoClockID() {
         return tomatoClockID;
     }
 
-    public int getUserId() {
-        return userId;
-    }
+//    public int getUserId() {
+//        return userId;
+//    }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
+//    public void setUserId(int userId) {
+//        this.userId = userId;
+//    }
 
-    @Override
     public void setTomatoClockID(int tomatoClockID) {
         this.tomatoClockID = tomatoClockID;
     }
@@ -78,17 +76,15 @@ public class TomatoClockStateRecord extends TomatoClock {
     }
 
     //
-    public TomatoClockStateRecord() {
-
-    }
+//    public TomatoClockStateRecord() { }
 
     //生成工作日志
-    public String getSummry() {
-        return super.summry;
-    }
+//    public String getSummry() {
+//        return summry;
+//    }
 
-    public void setSummry(String summry) {
-        super.summry = summry;
-    }
+//    public void setSummry(String summry) {
+//        summry = summry;
+//    }
 
 }

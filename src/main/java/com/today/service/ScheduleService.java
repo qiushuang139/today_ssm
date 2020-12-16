@@ -21,7 +21,9 @@ public interface ScheduleService {
 
     Schedule getScheduleByScheduleId(int scheduleId);
 
-    List<Schedule> getScheduleByUserId(int userId);
+    List<Schedule> getScheduleByUserId(int userId,int page);
 
     int getMaxScheduleId();
+
+    int getScheduleNumByUserId(int userId);
 }

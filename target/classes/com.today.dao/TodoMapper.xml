@@ -39,17 +39,17 @@
         where todo_id=#{todoId}
     </delete>
 
-    <delete id="deleteTodoByUserId">
-        delete
-        from todo
-        where user_id=#{userId}
-    </delete>
+<!--    <delete id="deleteTodoByUserId">-->
+<!--        delete-->
+<!--        from todo-->
+<!--        where user_id=#{userId}-->
+<!--    </delete>-->
 
-    <delete id="deleteTodoByScheduleId">
-        delete
-        from todo
-        where schedule_id=#{scheduleId}
-    </delete>
+<!--    <delete id="deleteTodoByScheduleId">-->
+<!--        delete-->
+<!--        from todo-->
+<!--        where schedule_id=#{scheduleId}-->
+<!--    </delete>-->
 
     <select id="getTodoByTodoId" resultMap="TodoResultMap">
         select *
@@ -61,29 +61,40 @@
         select *
         from todo
         where user_id=#{userId}
+        order by todo_id
+        limit #{page,jdbcType=INTEGER},#{pageSize}
     </select>
 
     <select id="getTodoByScheduleId" resultMap="TodoResultMap">
         select *
         from todo
         where schedule_id=#{scheduleId}
+        order by todo_id
+        limit #{page,jdbcType=INTEGER},#{pageSize}
     </select>
 
-    <select id="getTodoNumberByUserId" resultType="java.lang.Integer">
+    <select id="getTodoNumByUserId" resultType="java.lang.Integer">
         select count(*)
         from todo
         where user_id=#{userId}
     </select>
 
-    <select id="getTodoNumberByScheduleId" resultType="java.lang.Integer">
+    <select id="getTodoNumByScheduleId" resultType="java.lang.Integer">
         select count(*)
         from todo
-        where schedule_id={scheduleId}
+        where schedule_id=#{scheduleId}
     </select>
 
     <select id="getMaxTodoId" resultType="java.lang.Integer">
-        select max(schedule_id)
+        select max(todo_id)
         from todo
     </select>
+
+    <select id="getTodoIdsByScheduleId" resultType="java.lang.Integer">
+        select todo_id
+        from todo
+        where schedule_id=#{scheduleId}
+    </select>
+
 
 </mapper>

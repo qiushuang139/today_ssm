@@ -15,21 +15,23 @@ public interface TodoDao {
 
     int deleteTodoByTodoId(@Param("todoId") int todoId);//根据TodoId删除Todo
 
-    int deleteTodoByUserId(@Param("userId")int userId);
 
-    int deleteTodoByScheduleId(@Param("scheduleId")int scheduleId);
-
-    int updateTodoByTodoId(@Param("todoId") int todoId,Todo todo);//根据TodoId修改Todo
+    int updateTodoByTodoId(Todo todo);//根据TodoId修改Todo
 
     Todo getTodoByTodoId(@Param("todoId") int todoId);//根据TodoId获取Todo
 
-    List<Todo> getTodoByUserId(@Param("userId") int userId);//根据userId获取Todo列表
+    List<Todo> getTodoByUserId(@Param("userId") int userId,@Param("page") int page,
+                               @Param("pageSize") int pageSize);//根据userId获取Todo列表
 
-    List<Todo> getTodoByScheduleId(@Param("scheduleId") int scheduleId);//根据ScheduleId获取todo列表
+    List<Todo> getTodoByScheduleId(@Param("scheduleId") int scheduleId,
+                                   @Param("page")int page, @Param("pageSize")int pageSize);//根据ScheduleId获取todo列表
 
-    int getTodoNumberByUserId(@Param("userId")int userId);
+    int getTodoNumByUserId(@Param("userId")int userId);
 
-    int getTodoNumberByScheduleId(@Param("scheduleId")int scheduleId);
+    int getTodoNumByScheduleId(@Param("scheduleId")int scheduleId);
 
     int getMaxTodoId();
+
+    List<Integer> getTodoIdsByScheduleId(@Param("scheduleId") int scheduleId);
+
 }
