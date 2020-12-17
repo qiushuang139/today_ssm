@@ -134,10 +134,10 @@ public class TodoController {
     */
     @RequestMapping(value = "/get-todo-by-userid/{userId}",method = RequestMethod.GET)
     @Authorization
-    public ResponseEntity getTodoByUserId(@PathVariable("userId") int userId,int page){
+    public ResponseEntity getTodoByUserId(@PathVariable("userId") int userId,int page,int pageSize){
         try {
             return new ResponseEntity(
-                    new ResultModel(HttpStatus.OK,todoService.getTodoByUserId(userId,page)),HttpStatus.OK);
+                    new ResultModel(HttpStatus.OK,todoService.getTodoByUserId(userId,page,pageSize)),HttpStatus.OK);
         }catch (Exception ex){
             ex.printStackTrace();
             return new ResponseEntity(
@@ -167,10 +167,10 @@ public class TodoController {
     */
     @Authorization
     @RequestMapping(value = "/get-todo-by-scheduleid/{scheduleId}",method = RequestMethod.GET)
-    public ResponseEntity getTodoNumByScheduleId(@PathVariable("scheduleId")int scheduleId,int page){
+    public ResponseEntity getTodoNumByScheduleId(@PathVariable("scheduleId")int scheduleId,int page,int pageSize){
         try {
             return new ResponseEntity(
-                    new ResultModel(HttpStatus.OK,todoService.getTodoByScheduleId(scheduleId,page)),HttpStatus.OK);
+                    new ResultModel(HttpStatus.OK,todoService.getTodoByScheduleId(scheduleId,page,pageSize)),HttpStatus.OK);
         }catch (Exception ex){
             ex.printStackTrace();
             return new ResponseEntity(
@@ -197,9 +197,9 @@ public class TodoController {
      */
     @RequestMapping(value = "/get-child-todo/{todoId}",method = RequestMethod.GET)
     @Authorization
-    public ResponseEntity getChildTodos(@PathVariable("todoId") int todoId,int page){
+    public ResponseEntity getChildTodos(@PathVariable("todoId") int todoId,int page,int pageSize){
         try {
-            return new ResponseEntity(new ResultModel(HttpStatus.OK,todoService.getChildTodos(todoId,page)),HttpStatus.OK);
+            return new ResponseEntity(new ResultModel(HttpStatus.OK,todoService.getChildTodos(todoId,page,pageSize)),HttpStatus.OK);
         }catch (Exception ex){
             ex.printStackTrace();
             return new ResponseEntity(
@@ -215,9 +215,9 @@ public class TodoController {
      */
     @RequestMapping(value = "/get-parent-todo/{todoId}",method = RequestMethod.GET)
     @Authorization
-    public ResponseEntity getParentTodos(@PathVariable("todoId") int todoId,int page){
+    public ResponseEntity getParentTodos(@PathVariable("todoId") int todoId,int page,int pageSize){
         try {
-            return new ResponseEntity(new ResultModel(HttpStatus.OK,todoService.getParentTodos(todoId,page)),HttpStatus.OK);
+            return new ResponseEntity(new ResultModel(HttpStatus.OK,todoService.getParentTodos(todoId,page,pageSize)),HttpStatus.OK);
         }catch (Exception ex){
             ex.printStackTrace();
             return new ResponseEntity(

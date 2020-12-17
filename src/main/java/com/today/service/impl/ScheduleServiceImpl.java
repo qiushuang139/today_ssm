@@ -57,8 +57,8 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
-    public List<Schedule> getScheduleByUserId(int userId,int page) {
-        return scheduleDao.getScheduleByUserId(userId,page, Constants.SCHEDULE_PAGE_SIZE);
+    public List<Schedule> getScheduleByUserId(int userId,int page,int pageSize) {
+        return scheduleDao.getScheduleByUserId(userId,page, pageSize);
     }
 
     @Override

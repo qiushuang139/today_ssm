@@ -61,27 +61,27 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public List<Todo> getTodoByUserId(int userId,int page) {
-        return todoDao.getTodoByUserId(userId,page,Constants.TODO_PAGE_SIZE);
+    public List<Todo> getTodoByUserId(int userId,int page,int pageSize) {
+        return todoDao.getTodoByUserId(userId,page,pageSize);
     }
 
     @Override
-    public List<Todo> getTodoByScheduleId(int scheduleId,int page) {
-        return todoDao.getTodoByScheduleId(scheduleId,page,Constants.TODO_PAGE_SIZE);
+    public List<Todo> getTodoByScheduleId(int scheduleId,int page,int pageSize) {
+        return todoDao.getTodoByScheduleId(scheduleId,page,pageSize);
     }
 
     @Override
     public int setChildTodoId(int childTodoId, int parentTodoId) {
-        TodoRelationship realationship=new TodoRelationship();
-        realationship.setChildTodoId(childTodoId);
-        realationship.setParentTodoId(parentTodoId);
-        return todoRelationshipDao.addTodoRealationShip(realationship);
+        TodoRelationship relationship=new TodoRelationship();
+        relationship.setChildTodoId(childTodoId);
+        relationship.setParentTodoId(parentTodoId);
+        return todoRelationshipDao.addTodoRealationShip(relationship);
     }
 
     @Override
-    public List<Todo> getChildTodos(int todoId,int page) {
+    public List<Todo> getChildTodos(int todoId,int page,int pageSize) {
         List<Todo> ans=new ArrayList<>();
-        List<Integer> childTodoIds= todoRelationshipDao.getChildTodoIdList(todoId,page,Constants.TODO_PAGE_SIZE);
+        List<Integer> childTodoIds= todoRelationshipDao.getChildTodoIdList(todoId,page,pageSize);
         for (Integer childTodoId:childTodoIds) {
             ans.add(todoDao.getTodoByTodoId(childTodoId));
         }
@@ -89,9 +89,9 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public List<Todo> getParentTodos(int todoId,int page) {
+    public List<Todo> getParentTodos(int todoId,int page,int pageSize) {
         List<Todo> ans=new ArrayList<>();
-        List<Integer> parentTodoIds= todoRelationshipDao.getParentTodoIdList(todoId,page, Constants.TODO_PAGE_SIZE);
+        List<Integer> parentTodoIds= todoRelationshipDao.getParentTodoIdList(todoId,page,pageSize);
         for (Integer parentTodoId:parentTodoIds) {
             ans.add(todoDao.getTodoByTodoId(parentTodoId));
         }

@@ -22,15 +22,15 @@ public interface TodoService {
 
     Todo getTodoByTodoId(int todoId);
 
-    List<Todo> getTodoByUserId(int userId,int page);
+    List<Todo> getTodoByUserId(int userId,int page,int pageSize);
 
-    List<Todo> getTodoByScheduleId(int scheduleId,int page);
+    List<Todo> getTodoByScheduleId(int scheduleId,int page,int pageSize);
 
     int setChildTodoId(int childTodoId, int parentTodoId);
 
-    List<Todo> getChildTodos(int todoId,int page);
+    List<Todo> getChildTodos(int todoId,int page,int pageSize);
 
-    List<Todo> getParentTodos(int todoId,int page);
+    List<Todo> getParentTodos(int todoId,int page,int pageSize);
 
     int getMaxTodoId();
 

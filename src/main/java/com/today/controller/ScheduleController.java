@@ -113,10 +113,10 @@ public class ScheduleController {
      */
     @RequestMapping(value = "/get-schedule-by-userid/{userId}",method = RequestMethod.GET)
     @Authorization
-    public ResponseEntity getScheduleByUserId(@PathVariable("userId") int userId,int page){
+    public ResponseEntity getScheduleByUserId(@PathVariable("userId") int userId,int page,int pageSize){
         try {
             return new ResponseEntity(new ResultModel(
-                    HttpStatus.OK,scheduleService.getScheduleByUserId(userId,page)),
+                    HttpStatus.OK,scheduleService.getScheduleByUserId(userId,page,pageSize)),
                     HttpStatus.OK);
         }catch (Exception ex){
             ex.printStackTrace();
