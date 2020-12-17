@@ -20,25 +20,5 @@ public class Constants {
      * 存放Authorization的header字段
      */
     public static final String AUTHORIZATION = "authorization";
-
-    /**
-     * todo每页的数量
-     */
-    public static final int TODO_PAGE_SIZE=5;
-
-    /**
-     * schedule每页的数量
-     */
-    public static final int SCHEDULE_PAGE_SIZE=5;
-    /**
-     * tomatoclock每页的数量
-     */
-    public static final int TOMATOCLOCK_PAGE_SIZE=5;
-
-    /**
-     * tomatoclockrecord每页的数量
-     */
-    public static final int TOMATOCLOCKRECORD_PAGE_SIZE=5;
-
 }
 

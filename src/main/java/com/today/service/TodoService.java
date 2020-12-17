@@ -18,23 +18,23 @@ public interface TodoService {
     int deleteTodoByTodoId(int todoId);
 
 
-    int deleteTodoRealationshipByTodoId(int todoId);
+    int deleteTodoRelationshipByTodoId(int todoId);
 
     Todo getTodoByTodoId(int todoId);
 
-    List<Todo> getTodoByUserId(int userId,int page);
+    List<Todo> getTodoByUserId(int userId,int page,int pageSize);
 
-    List<Todo> getTodoByScheduleId(int scheduleId,int page);
+    List<Todo> getTodoByScheduleId(int scheduleId,int page,int pageSize);
 
     int setChildTodoId(int childTodoId, int parentTodoId);
 
-    List<Todo> getChildTodos(int todoId,int page);
+    List<Todo> getChildTodos(int todoId,int page,int pageSize);
 
-    List<Todo> getParentTodos(int todoId,int page);
+    List<Todo> getParentTodos(int todoId,int page,int pageSize);
 
     int getMaxTodoId();
 
-    int deleteTodoRealationship(int childTodoId,int parentTodoId);
+    int deleteTodoRelationship(int childTodoId, int parentTodoId);
 
     List<Integer> getTodoIdsByScheduleId(int scheduleId);
 

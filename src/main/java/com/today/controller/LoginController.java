@@ -5,6 +5,7 @@ import com.today.component.annotation.Authorization;
 import com.today.component.annotation.CurrentUser;
 import com.today.entity.Token;
 import com.today.entity.User;
+import com.today.entity.UserPasswordRecord;
 import com.today.model.ResultModel;
 import com.today.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +13,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author :zhangyi
@@ -27,7 +25,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoginController {
 
 
-
     @Autowired
     private UserService userService;
 
@@ -36,9 +33,9 @@ public class LoginController {
     private TokenManager tokenManager;
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity login(@RequestParam int userId,@RequestParam String password){
-        Assert.notNull(userId,"userId can't be empty");
-        Assert.notNull(password,"password can't be empty");
+    public ResponseEntity login(@RequestBody UserPasswordRecord record){
+        int userId=record.getUserId();
+        String password=record.getPassword();
 
         User user=userService.getUserById(userId);
         if(user==null||!user.getPassword().equals(password)){

@@ -6,4 +6,4 @@ target
 ##############################
 ## Netbeans conf            ##
 ##############################
-db.properties
+src/main/resources/db.properties

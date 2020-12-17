@@ -9,7 +9,7 @@ import java.util.Date;
  */
 public class Todo {
     private int todoId;//待办ID
-    private int scheduleId;//关联日程ID
+    private Integer scheduleId;//关联日程ID
     private int userId;//关联用户ID
     private int todoProgressRate;//待办完成进程进度百分比（０％－１００％）
     private int repeatType;//待办重复类型
@@ -28,11 +28,11 @@ public class Todo {
         this.todoId = todoId;
     }
 
-    public int getScheduleId() {
+    public Integer getScheduleId() {
         return scheduleId;
     }
 
-    public void setScheduleId(int scheduleId) {
+    public void setScheduleId(Integer scheduleId) {
         this.scheduleId = scheduleId;
     }
 

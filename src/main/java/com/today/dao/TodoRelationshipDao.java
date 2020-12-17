@@ -1,8 +1,7 @@
 package com.today.dao;
 
-import com.today.entity.TodoRealationship;
+import com.today.entity.TodoRelationship;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -11,8 +10,8 @@ import java.util.List;
  * @description:
  * @date :2020/11/24 15:16
  */
-public interface TodoRealationshipDao {
-    int addTodoRealationShip(TodoRealationship todoRealationship);
+public interface TodoRelationshipDao {
+    int addTodoRealationShip(TodoRelationship todoRelationship);
 
     List<Integer> getChildTodoIdList(@Param("todoId") int todoId,
                                      @Param("page")int page,@Param("pageSize")int pageSize);
@@ -20,7 +19,7 @@ public interface TodoRealationshipDao {
     List<Integer> getParentTodoIdList(@Param("todoId")int todoId,
                                       @Param("page") int page,@Param("pageSize") int pageSize);
 
-    int deleteTodoRealationshipByTodoId(@Param("todoId") int todoId);
+    int deleteTodoRelationshipByTodoId(@Param("todoId") int todoId);
 
     int deleteTodoRealationshipByBothTodoId(@Param("childTodoId") int childTodoId,
                                             @Param("parentTodoId") int parentTodoId);
