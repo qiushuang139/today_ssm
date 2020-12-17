@@ -19,7 +19,7 @@ import org.springframework.web.multipart.support.MissingServletRequestPartExcept
  * @description:
  * @date :2020/12/15 15:41
  */
-@Component
+//@Component
 public class CurrentUserMethodArgumentResolver implements HandlerMethodArgumentResolver {
 
     @Autowired

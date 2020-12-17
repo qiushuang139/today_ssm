@@ -18,8 +18,9 @@ import java.lang.reflect.Method;
  * @description:
  * @date :2020/12/15 15:36
  */
-@Component
+//@Component
 public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
+
     @Qualifier("redisTokenManager")
     @Autowired
     private TokenManager tokenManager;

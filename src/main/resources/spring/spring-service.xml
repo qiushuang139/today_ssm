@@ -18,25 +18,20 @@
         <property name="todoRelationshipDao" ref="todoRelationshipDao"/>
     </bean>
 
-    <bean id="ScheduleServiceImpl" class="com.today.service.impl.ScheduleServiceImpl">
+    <bean id="scheduleServiceImpl" class="com.today.service.impl.ScheduleServiceImpl">
         <property name="scheduleDao" ref="scheduleDao"/>
     </bean>
-    <bean id="TomatoClockImpl" class="com.today.service.impl.TomatoClockImpl">
+    <bean id="tomatoClockImpl" class="com.today.service.impl.TomatoClockImpl">
         <property name="tomatoClockDao" ref="tomatoClockDao"/>
     </bean>
-    <bean id="TomatoClockStateRecordImpl" class="com.today.service.impl.TomatoClockStateRecordImpl">
+    <bean id="tomatoClockStateRecordImpl" class="com.today.service.impl.TomatoClockStateRecordImpl">
         <property name="tomatoClockStateRecordDao" ref="tomatoClockStateRecordDao"/>
     </bean>
 
-    <bean id="RedisTokenManager" class="com.today.component.RedisTokenManager">
+    <bean id="redisTokenManager" class="com.today.component.RedisTokenManager">
 <!--        <property name="redis" ref=""-->
     </bean>
-    <bean id="AuthorizationInterceptor" class="com.today.component.annotation.AuthorizationInterceptor">
 
-    </bean>
-
-    <bean id="CurrentUserMethodArgumentResolver" class="com.today.component.annotation.CurrentUserMethodArgumentResolver">
-    </bean>
 <!--    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">-->
 <!--        <property name="interceptors">-->
 <!--            <list>-->
