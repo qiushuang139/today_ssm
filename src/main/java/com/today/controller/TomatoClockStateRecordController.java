@@ -31,11 +31,15 @@
  */
 package com.today.controller;
 
+import com.today.component.annotation.Authorization;
 import com.today.entity.TomatoClockStateRecord;
+import com.today.model.ResultModel;
 import com.today.service.TomatoClockStateRecordService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -46,7 +50,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/tomatoClcokStateRecord")
+@RequestMapping("/tomatoclcokstaterecord")
 public class TomatoClockStateRecordController {
     @Autowired
     private TomatoClockStateRecordService tomatoClockStateRecordService;
@@ -56,11 +60,24 @@ public class TomatoClockStateRecordController {
 //};
     
     //用post方法通过tomatoClockID获取对应番茄钟的使用记录
-    @RequestMapping(value = "/getRecord/{tomatoClockID}", method = RequestMethod.GET)
-    public List<TomatoClockStateRecord> getRecord(@PathVariable("tomatoClockID") int tomatoClockID) {
-        List<TomatoClockStateRecord> tomatoClockStateRecords = tomatoClockStateRecordService.getRecord(tomatoClockID);
+    @RequestMapping(value = "/getrecord", method = RequestMethod.GET)
+    @Authorization
+    public ResponseEntity getRecord(int tomatoClockID,int page) {
+       // List<TomatoClockStateRecord> tomatoClockStateRecords = tomatoClockStateRecordService.getRecord(tomatoClockID);
 
-        return tomatoClockStateRecords;
+      //  return tomatoClockStateRecords;
+        try {
+            List<TomatoClockStateRecord> tomatoClockStateRecords = tomatoClockStateRecordService.getRecord(tomatoClockID,page);
+            return new ResponseEntity(
+                    new ResultModel(HttpStatus.OK,tomatoClockStateRecords),HttpStatus.OK
+                    );
+
+        }catch (Exception ex){
+            ex.printStackTrace();
+            return new ResponseEntity(
+                    new ResultModel(HttpStatus.INTERNAL_SERVER_ERROR),HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
 
     ;

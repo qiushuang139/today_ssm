@@ -16,10 +16,12 @@
     </update>
 
 
-    <select id="getRecord" parameterType="com.today.entity.TomatoClockStateRecord" resultType="java.util.Map">
+    <select id="getRecord" parameterType="com.today.entity.TomatoClockStateRecord" resultType="com.today.entity.TomatoClockStateRecord">
         select *
         from tomatoclockstaterecord
         where tomato_clock_id=#{tomatoClockID}
+        order by time
+        limit #{page,jdbcType=INTEGER},#{pagesize}
     </select>
 
 </mapper>

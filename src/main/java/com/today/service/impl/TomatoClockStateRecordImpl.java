@@ -37,6 +37,7 @@
  */
 package com.today.service.impl;
 
+import com.today.component.Constants;
 import com.today.dao.TomatoClockStateRecordDao;
 import com.today.entity.TomatoClock;
 import com.today.entity.TomatoClockStateRecord;
@@ -65,8 +66,8 @@ public class TomatoClockStateRecordImpl implements TomatoClockStateRecordService
     }
     @Override
     //得到对应用户的番茄钟使用记录
-    public  List<TomatoClockStateRecord> getRecord(@Param("tomatoClockID") int tomatoClockID) {
-     return tomatoClockStateRecordDao.getRecord(tomatoClockID);
+    public  List<TomatoClockStateRecord> getRecord(@Param("tomatoClockID") int tomatoClockID,@Param("page")int page) {
+     return tomatoClockStateRecordDao.getRecord(tomatoClockID,page, Constants.TOMATOCLOCKRECORD_PAGE_SIZE);
     }
     @Override
     //生成工作日志

@@ -34,7 +34,9 @@
     <bean id="AuthorizationInterceptor" class="com.today.component.annotation.AuthorizationInterceptor">
 
     </bean>
-
+<bean id="LogServiceImpl" class="com.today.service.impl.LogServiceImpl">
+    <property name="logDao" ref="logDao"/>
+</bean>
     <bean id="CurrentUserMethodArgumentResolver" class="com.today.component.annotation.CurrentUserMethodArgumentResolver">
     </bean>
 <!--    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">-->

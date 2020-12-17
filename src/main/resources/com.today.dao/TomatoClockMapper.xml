@@ -74,5 +74,12 @@
         select max(tomato_clock_id)
         from tomatoclock
     </select>
+    <select id="getTomatoClockByUserId" resultType="com.today.entity.TomatoClock">
+        select *
+        from tomatoclock
+        where user_id=#{userID}
+        order by tomato_clock_id
+        limit #{page,jdbcType=INTEGER},#{pagesize}
+    </select>
 
 </mapper>

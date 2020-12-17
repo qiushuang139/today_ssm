@@ -35,6 +35,24 @@
  * @create 2020/11/18
  * @author liyou
  * @create 2020/11/18
+ * @author liyou
+ * @create 2020/11/18
+ * @author liyou
+ * @create 2020/11/18
+ * @author liyou
+ * @create 2020/11/18
+ * @since 1.0.0
+ * <p>
+ * 〈一句话功能简述〉<br>
+ * 〈番茄钟实现类〉
+ * @since 1.0.0
+ * <p>
+ * 〈一句话功能简述〉<br>
+ * 〈番茄钟实现类〉
+ * @since 1.0.0
+ * <p>
+ * 〈一句话功能简述〉<br>
+ * 〈番茄钟实现类〉
  * @since 1.0.0
  * <p>
  * 〈一句话功能简述〉<br>
@@ -91,6 +109,7 @@
  */
 package com.today.service.impl;
 
+import com.today.component.Constants;
 import com.today.dao.TodoDao;
 import com.today.dao.TomatoClockDao;
 import com.today.entity.Todo;
@@ -98,6 +117,8 @@ import com.today.entity.TomatoClock;
 import com.today.service.TomatoClockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class TomatoClockImpl implements TomatoClockService {
@@ -117,8 +138,8 @@ public class TomatoClockImpl implements TomatoClockService {
     }
 
     @Override
-    public int SetTomatoClockState(TomatoClock tomatoClock) {
-        return TomatoClockDao.SetTomatoClockState(tomatoClock);
+    public int SetTomatoClockState(int tomatoClockID,int type) {
+        return TomatoClockDao.SetTomatoClockState(tomatoClockID,type);
     }
 
     @Override
@@ -152,8 +173,13 @@ public class TomatoClockImpl implements TomatoClockService {
     }
 
     @Override
-    public int setSummary(int userID) {
-        return TomatoClockDao.setSummary(userID);
+    public int setSummary(int userID,String summary) {
+        return TomatoClockDao.setSummary(userID,summary);
+    }
+
+    @Override
+    public List<TomatoClock> getTomatoClockByUserId(int userID, int page) {
+        return TomatoClockDao.getTomatoClockByUserId(userID, page, Constants.TOMATOCLOCK_PAGE_SIZE);
     }
 
 //    @Override
