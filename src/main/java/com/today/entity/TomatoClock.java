@@ -35,9 +35,10 @@ import java.util.Date;
 
 public class TomatoClock {
     //单次时间
-    private int singelDuration;
+    private int singleDuration;
+
     //用户ID
-    int userID;
+    private int userID;
     //番茄钟
     private int tomatoClockID;
     //待办ID
@@ -45,7 +46,7 @@ public class TomatoClock {
     //类型
     private int type;
     //单次休息时长
-    private int singelRestDuration;
+    private int singleRestDuration;
     //开始时间
     private Date beginTime;
     //预计重复次数
@@ -87,32 +88,31 @@ public class TomatoClock {
         this.todoID = todoID;
     }
 
-    public int getSingelDuration() {
-        return singelDuration;
+    public int getSingleDuration() {
+        return singleDuration;
     }
 
-    public void setSingelDuration(int singelDuration) {
-        this.singelDuration = singelDuration;
-    }
-
-
-    public int getSingelRestDuration() {
-        return singelRestDuration;
-    }
-
-    public void setSingelRestDuration(int singelRestDuration) {
-        this.singelRestDuration = singelRestDuration;
+    public void setSingleDuration(int singleDuration) {
+        this.singleDuration = singleDuration;
     }
 
 
-    public Date getBeiginTime() {
+    public int getSingleRestDuration() {
+        return singleRestDuration;
+    }
+
+    public void setSingleRestDuration(int singleRestDuration) {
+        this.singleRestDuration = singleRestDuration;
+    }
+
+
+    public void setBeginTime(Date beginTime) {
+        this.beginTime = beginTime;
+    }
+
+    public Date getBeginTime() {
         return beginTime;
     }
-
-    public void setBeiginTime(Date beiginTime) {
-        this.beginTime = beiginTime;
-    }
-
 
     public int getRepeatTimes() {
         return repeatTimes;

@@ -17,7 +17,6 @@ import java.util.concurrent.TimeUnit;
  */
 @Component
 public class RedisTokenManager implements TokenManager {
-//    private static final int TOKEN_EXPIRES_HOUR=72;
 
     @Autowired
     private RedisTemplate<Integer,String> redis;

@@ -11,9 +11,10 @@ public interface TomatoClockStateRecordDao {
     //新增总结
     String getSummry(TomatoClockStateRecord tomatoClockStateRecord);
     //得到对应番茄钟的番茄钟使用记录
-   List <TomatoClockStateRecord> getRecord(@Param("tomatoClockID") int tomatoClockID, @Param("page")int page,
+   List <TomatoClockStateRecord> getRecord(@Param("tomatoClockID") int tomatoClockID,
+                                           @Param("page")int page,
                                            @Param("pagesize")int pagesize);
     //生成工作日志
-    int generateDiary(@Param("tomatoClockID")int tomatoClockID);
+//    int generateDiary(@Param("tomatoClockID")int tomatoClockID);
 
 }

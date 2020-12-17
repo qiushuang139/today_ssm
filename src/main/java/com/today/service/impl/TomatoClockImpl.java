@@ -178,8 +178,8 @@ public class TomatoClockImpl implements TomatoClockService {
     }
 
     @Override
-    public List<TomatoClock> getTomatoClockByUserId(int userID, int page) {
-        return TomatoClockDao.getTomatoClockByUserId(userID, page, Constants.TOMATOCLOCK_PAGE_SIZE);
+    public List<TomatoClock> getTomatoClockByUserId(int userID, int page,int pageSize) {
+        return TomatoClockDao.getTomatoClockByUserId(userID, page,pageSize);
     }
 
 //    @Override

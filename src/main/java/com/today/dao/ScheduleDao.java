@@ -13,7 +13,6 @@ import java.util.List;
 public interface ScheduleDao {
     int addSchedule(Schedule schedule);
 
-
     int deleteScheduleByScheduleId(@Param("scheduleId") int scheduleId);
 
     int deleteScheduleByUserId(@Param("userId")int userId);
@@ -24,7 +23,6 @@ public interface ScheduleDao {
 
     List<Schedule> getScheduleByUserId(@Param("userId")int userId,@Param("page") int page,
                                        @Param("pageSize")int pageSize);
-
     int getMaxScheduleId();
 
     List<Integer> getScheduleIdsByUserId(@Param("userId") int userId);

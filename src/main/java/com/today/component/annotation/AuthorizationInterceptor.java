@@ -27,11 +27,6 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
 
     public boolean preHandle (HttpServletRequest request,
                               HttpServletResponse response, Object handler) throws Exception {
-
-        //
-        System.out.println("执行校验");
-
-
         // 如果不是映射到方法直接通过
         if (!(handler instanceof HandlerMethod)) {
             return true;

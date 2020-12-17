@@ -75,10 +75,10 @@ public class TomatoController {
 
     @RequestMapping(value = "/get-tomatoclock-by-userid/{userID} ",method = RequestMethod.GET)
     @Authorization
-    public ResponseEntity getTomatoClockByUserId(@PathVariable("userID") int userID, int page){
+    public ResponseEntity getTomatoClockByUserId(@PathVariable("userID") int userID, int page,int pageSize){
         try{
             return new ResponseEntity(
-                    new ResultModel(HttpStatus.OK,tomatoClockService.getTomatoClockByUserId(userID,page)),HttpStatus.OK
+                    new ResultModel(HttpStatus.OK,tomatoClockService.getTomatoClockByUserId(userID,page,pageSize)),HttpStatus.OK
             );
         }catch (Exception ex){
             ex.printStackTrace();
@@ -234,7 +234,7 @@ public class TomatoController {
      * @param tomatoClockID
      * @return
      */
-    @RequestMapping(value = "/get-tomatoclock-bytomatoclock-id/{tomatoClockID}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{tomatoClockID}", method = RequestMethod.GET)
     public ResponseEntity getTomatoClockById(@PathVariable("tomatoClockID") int tomatoClockID) {
         //   System.out.println(tomatoClockService.gettest(tomatoClockID).toString());
         //   TomatoClock t = tomatoClockService.getTomatoClockById(tomatoClockID);
@@ -275,22 +275,18 @@ public class TomatoController {
      * @param
      * @return
      */
-    @RequestMapping(value = "/set-summary", method = RequestMethod.PATCH)
-    @Authorization
-    public ResponseEntity setSummary(@CurrentUser User user,String summary) {
-        try {
-            return new ResponseEntity(
-                    new ResultModel(
-                            HttpStatus.OK, tomatoClockService.setSummary(user.getUserId(),summary)), HttpStatus.OK);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return new ResponseEntity(
-                    new ResultModel(HttpStatus.INTERNAL_SERVER_ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
-        } //   return tomatoClockService.setSummary(userID);
-
-
-    }
-
-    ;
+//    @RequestMapping(value = "/set-summary", method = RequestMethod.PATCH)
+//    @Authorization
+//    public ResponseEntity setSummary(@CurrentUser User user,String summary) {
+//        try {
+//            return new ResponseEntity(
+//                    new ResultModel(
+//                            HttpStatus.OK, tomatoClockService.setSummary(user.getUserId(),summary)), HttpStatus.OK);
+//        } catch (Exception ex) {
+//            ex.printStackTrace();
+//            return new ResponseEntity(
+//                    new ResultModel(HttpStatus.INTERNAL_SERVER_ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
+//        } //   return tomatoClockService.setSummary(userID);
+//    }
 
 }

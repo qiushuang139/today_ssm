@@ -26,7 +26,7 @@ public interface TomatoClockService {
     //根据userID删除对应的tomatoclock
     int deleteTomatoClockByuserID(int userID);
     //编辑工作心得
-    int setSummary(@Param("userID") int userID,String summary);
+    int setSummary(int userID,String summary);
     //根据user ID获取tomatoclock
-  List<TomatoClock> getTomatoClockByUserId(int userID,int page);
+  List<TomatoClock> getTomatoClockByUserId(int userID,int page,int pageSize);
 }

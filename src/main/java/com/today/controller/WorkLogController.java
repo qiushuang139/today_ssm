@@ -34,7 +34,7 @@ package com.today.controller;
 import com.today.component.annotation.Authorization;
 import com.today.entity.WorkLog;
 import com.today.model.ResultModel;
-import com.today.service.LogService;
+import com.today.service.WorkLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,27 +43,32 @@ import org.springframework.web.bind.annotation.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@RequestMapping("/worklog")
+@RequestMapping("/worklogs")
 @RestController
 public class WorkLogController {
     @Autowired
-    private LogService logService;
+    private WorkLogService workLogService;
 
     /**
      *
      * @param workLog
      * @return
      */
-    @RequestMapping(value = "add-log", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @Authorization
-    public ResponseEntity addLog(@RequestBody WorkLog workLog) {
+    public ResponseEntity addWorkLog(@RequestBody WorkLog workLog) {
         try {
+
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             Date time = new Date();
             workLog.setDate(time);
-            logService.addLog(workLog);
-
+            if(workLogService.getWorkLogByDate(workLog.getUserID(),formatter.format(time))!=null){
+                return new ResponseEntity(new ResultModel(HttpStatus.OK),HttpStatus.OK);
+            }
+            workLogService.addWorkLog(workLog);
             return new ResponseEntity(
-                    new ResultModel(HttpStatus.OK, logService.getLogByDate(time)), HttpStatus.OK);
+                    new ResultModel(HttpStatus.OK, workLogService.getWorkLogByDate(workLog.getUserID(),formatter.format(time))),
+                    HttpStatus.OK);
         } catch (Exception ex) {
             ex.printStackTrace();
             return new ResponseEntity(
@@ -71,27 +76,30 @@ public class WorkLogController {
         }
     }
 
-    @RequestMapping(value = "/update-log", method = RequestMethod.PUT)
+    @RequestMapping(method = RequestMethod.PUT)
     @Authorization
-    public ResponseEntity updateLog(@RequestBody WorkLog workLog) {
-        try {
-            logService.updateLog(workLog);
-            return new ResponseEntity(
-                    new ResultModel(HttpStatus.OK, logService.getLogByDate(workLog.getDate())), HttpStatus.OK);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return new ResponseEntity(
-                    new ResultModel(HttpStatus.INTERNAL_SERVER_ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
-
-        }
-    }
-
-    @RequestMapping(value = "/delete-log-by-date", method = RequestMethod.DELETE)
-    @Authorization
-    public ResponseEntity deleteLogByDate(String date) {
+    public ResponseEntity updateWorkLog(@RequestBody WorkLog workLog) {
         try {
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-            logService.deleteLogByDate(formatter.parse(date));
+            String date=formatter.format(workLog.getDate());
+            workLogService.updateWorkLog(workLog);
+            return new ResponseEntity(
+                    new ResultModel(HttpStatus.OK, workLogService.getWorkLogByDate(workLog.getUserID(),date)), HttpStatus.OK);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return new ResponseEntity(
+                    new ResultModel(HttpStatus.INTERNAL_SERVER_ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
+
+        }
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE)
+    @Authorization
+    public ResponseEntity deleteWorkLogByDate(int userID,String date) {
+        try {
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+            workLogService.deleteWorkLogByDate(userID,formatter.parse(date));
             return new ResponseEntity(
                     new ResultModel(HttpStatus.OK), HttpStatus.OK
             );
@@ -105,17 +113,27 @@ public class WorkLogController {
 
     @RequestMapping(value = "/get-log-by-date", method = RequestMethod.GET)
     @Authorization
-    public ResponseEntity getLogByDate( String date) {
+    public ResponseEntity getLogByDate(int userID,String date) {
         try {
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-//            logService.deleteLogByDate(formatter.parse(date));
             return new ResponseEntity(
-                    new ResultModel(HttpStatus.OK, logService.getLogByDate(formatter.parse(date))), HttpStatus.OK)
+                    new ResultModel(HttpStatus.OK, workLogService.getWorkLogByDate(userID,date)), HttpStatus.OK)
                     ;
         } catch (Exception ex) {
             ex.printStackTrace();
             return new ResponseEntity(
                     new ResultModel(HttpStatus.INTERNAL_SERVER_ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    @Authorization
+    public ResponseEntity getWorkLogByUserID(int userID,int page,int pageSize){
+        try {
+            return new ResponseEntity(
+                    new ResultModel(HttpStatus.OK,workLogService.getWorkLogByUserID(userID,page,pageSize)),HttpStatus.OK);
+        }catch (Exception ex){
+            ex.printStackTrace();
+            return new ResponseEntity(new ResultModel(HttpStatus.INTERNAL_SERVER_ERROR),HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

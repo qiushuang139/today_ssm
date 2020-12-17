@@ -66,13 +66,13 @@ public class TomatoClockStateRecordImpl implements TomatoClockStateRecordService
     }
     @Override
     //得到对应用户的番茄钟使用记录
-    public  List<TomatoClockStateRecord> getRecord(@Param("tomatoClockID") int tomatoClockID,@Param("page")int page) {
-     return tomatoClockStateRecordDao.getRecord(tomatoClockID,page, Constants.TOMATOCLOCKRECORD_PAGE_SIZE);
+    public  List<TomatoClockStateRecord> getRecord(int tomatoClockID,int page,int pageSize) {
+        return tomatoClockStateRecordDao.getRecord(tomatoClockID,page, pageSize);
     }
-    @Override
+//    @Override
     //生成工作日志
-    public int generateDiary(@Param("tomatoClockID") int tomatoClockID) {
-        return tomatoClockStateRecordDao.generateDiary(tomatoClockID);
-    }
+//    public int generateDiary(@Param("tomatoClockID") int tomatoClockID) {
+//        return tomatoClockStateRecordDao.generateDiary(tomatoClockID);
+//    }
 
 }

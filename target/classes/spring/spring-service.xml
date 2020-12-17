@@ -15,7 +15,7 @@
 
     <bean id="todoServiceImpl" class="com.today.service.impl.TodoServiceImpl">
         <property name="todoDao" ref="todoDao"/>
-        <property name="todoRealationshipDao" ref="todoRealationshipDao"/>
+        <property name="todoRelationshipDao" ref="todoRelationshipDao"/>
     </bean>
 
     <bean id="ScheduleServiceImpl" class="com.today.service.impl.ScheduleServiceImpl">
@@ -31,21 +31,16 @@
     <bean id="RedisTokenManager" class="com.today.component.RedisTokenManager">
 <!--        <property name="redis" ref=""-->
     </bean>
-    <bean id="AuthorizationInterceptor" class="com.today.component.annotation.AuthorizationInterceptor">
 
+    <bean id="AuthorizationInterceptor" class="com.today.component.annotation.AuthorizationInterceptor">
     </bean>
-<bean id="LogServiceImpl" class="com.today.service.impl.LogServiceImpl">
-    <property name="logDao" ref="logDao"/>
-</bean>
+
+    <bean id="workLogServiceImpl" class="com.today.service.impl.WorkLogServiceImpl">
+        <property name="workLogDao" ref="workLogDao"/>
+    </bean>
+
     <bean id="CurrentUserMethodArgumentResolver" class="com.today.component.annotation.CurrentUserMethodArgumentResolver">
     </bean>
-<!--    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">-->
-<!--        <property name="interceptors">-->
-<!--            <list>-->
-<!--                <ref bean="AuthorizationInterceptor"/>-->
-<!--            </list>-->
-<!--        </property>-->
-<!--    </bean>-->
 
 
     <bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

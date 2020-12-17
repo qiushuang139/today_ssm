@@ -1,6 +1,5 @@
 package com.today.service.impl;
 
-import com.today.component.Constants;
 import com.today.dao.TodoDao;
 import com.today.dao.TodoRelationshipDao;
 import com.today.entity.Todo;
@@ -75,7 +74,7 @@ public class TodoServiceImpl implements TodoService {
         TodoRelationship relationship=new TodoRelationship();
         relationship.setChildTodoId(childTodoId);
         relationship.setParentTodoId(parentTodoId);
-        return todoRelationshipDao.addTodoRealationShip(relationship);
+        return todoRelationshipDao.addTodoRelationShip(relationship);
     }
 
     @Override

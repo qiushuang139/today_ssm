@@ -35,15 +35,15 @@ import java.util.Date;
 
 public class WorkLog {
     //用户ID
-    public int userID;
+    private int userID;
     //日期
-    public Date date;
+    private Date date;
     //番茄钟得分
-    public int tomatoScore;
+    private int tomatoScore;
     //schedule得分
-    public int scheduleScore;
+    private int scheduleScore;
     //工作日志
-    public String exercise;
+    private String experience;
 
     public Date getDate() {
         return date;
@@ -53,12 +53,12 @@ public class WorkLog {
         this.date = date;
     }
 
-    public String getExercise() {
-        return exercise;
+    public String getExperience() {
+        return experience;
     }
 
-    public void setExercise(String exercise) {
-        this.exercise = exercise;
+    public void setExperience(String experience) {
+        this.experience = experience;
     }
 
     public int getScheduleScore() {
@@ -84,4 +84,5 @@ public class WorkLog {
     public void setUserID(int userID) {
         this.userID = userID;
     }
+
 }

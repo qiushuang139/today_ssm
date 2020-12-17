@@ -17,7 +17,7 @@
     <insert id="addSchedule" parameterType="com.today.entity.Schedule">
         insert
         into schedule
-         values (#{scheduleId},#{userId},#{content},
+        values (#{scheduleId},#{userId},#{content},
          #{beginTime},#{endTime},#{repeatType},#{alarmType},#{scheduleType});
     </insert>
 

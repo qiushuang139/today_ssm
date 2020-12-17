@@ -11,7 +11,7 @@ import java.util.List;
  * @date :2020/11/24 15:16
  */
 public interface TodoRelationshipDao {
-    int addTodoRealationShip(TodoRelationship todoRelationship);
+    int addTodoRelationShip(TodoRelationship todoRelationship);
 
     List<Integer> getChildTodoIdList(@Param("todoId") int todoId,
                                      @Param("page")int page,@Param("pageSize")int pageSize);

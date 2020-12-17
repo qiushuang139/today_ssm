@@ -60,18 +60,15 @@ public class TomatoClockStateRecordController {
 //};
     
     //用post方法通过tomatoClockID获取对应番茄钟的使用记录
-    @RequestMapping(value = "/getrecord", method = RequestMethod.GET)
+    @RequestMapping(value = "/{tomatoClockID}",method = RequestMethod.GET)
     @Authorization
-    public ResponseEntity getRecord(int tomatoClockID,int page) {
-       // List<TomatoClockStateRecord> tomatoClockStateRecords = tomatoClockStateRecordService.getRecord(tomatoClockID);
-
-      //  return tomatoClockStateRecords;
+    public ResponseEntity getRecord(@PathVariable("tomatoClockID") int tomatoClockID,int page,int pageSize) {
         try {
-            List<TomatoClockStateRecord> tomatoClockStateRecords = tomatoClockStateRecordService.getRecord(tomatoClockID,page);
+            List<TomatoClockStateRecord> tomatoClockStateRecords =
+                    tomatoClockStateRecordService.getRecord(tomatoClockID,page,pageSize);
             return new ResponseEntity(
                     new ResultModel(HttpStatus.OK,tomatoClockStateRecords),HttpStatus.OK
                     );
-
         }catch (Exception ex){
             ex.printStackTrace();
             return new ResponseEntity(
@@ -83,9 +80,9 @@ public class TomatoClockStateRecordController {
     ;
 
     //未完成 生成工作日志
-    public int generateDiary(@PathVariable("userId") int userId) {
-        return tomatoClockStateRecordService.generateDiary(userId);
-    }
+//    public int generateDiary(@PathVariable("userId") int userId) {
+//        return tomatoClockStateRecordService.generateDiary(userId);
+//    }
 
     ;
 }

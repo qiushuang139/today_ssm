@@ -39,13 +39,6 @@ public class CurrentUserMethodArgumentResolver implements HandlerMethodArgumentR
     @Override
     public Object resolveArgument (MethodParameter parameter, ModelAndViewContainer mavContainer,
                                    NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
-        System.out.println("确认是否是当前的用户");
-
-//        NativeWebRequest webRequest
-//        return null;
-        // 取出鉴权时存入的登录用户 Id
-//        HttpServletRequest request=(HttpServletRequest)webRequest;
-
         Integer currentUserId=(Integer) webRequest.getAttribute(Constants.CURRENT_USER_ID,RequestAttributes.SCOPE_REQUEST);
         System.out.println("test"+webRequest.getAttribute(Constants.CURRENT_USER_ID,RequestAttributes.SCOPE_REQUEST));
 

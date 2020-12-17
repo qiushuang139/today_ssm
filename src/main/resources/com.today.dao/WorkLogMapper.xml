@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.today.dao.WorkLogDao">
+    <resultMap id="LogResultMap" type="com.today.entity.WorkLog">
+        <id property="userID" column="user_id"/>
+        <result property="date" column="date"/>
+        <result property="experience" column="experience"/>
+        <result property="scheduleScore" column="schedule_score"/>
+        <result property="tomatoScore" column="tomato_clock_score"/>
+    </resultMap>
+    <insert id="addWorkLog">
+        insert
+        into worklog
+        values (#{userID},#{date},#{tomatoScore},#{scheduleScore},#{experience});
+    </insert>
+    <update id="updateWorkLog">
+        update worklog
+        set user_id=#{userID},date=#{date},experience=#{experience},schedule_score=#{scheduleScore}
+        ,tomato_clock_score=#{tomatoScore}
+        where user_id=#{userID}
+    </update>
+    <delete id="deleteWorkLogByDate">
+        delete
+        from worklog
+        where date=#{date}
+        and user_id=#{userID}
+   </delete>
+    <select id="getWorkLogByDate" resultMap="LogResultMap">
+        select *
+        from worklog
+        where date=#{date}
+        and user_id=#{userID}
+    </select>
+    <select id="getWorkLogByUserID" resultMap="LogResultMap">
+        select *
+        from worklog
+        where user_id=#{userID}
+        order by date
+        limit #{page,jdbcType=INTEGER},#{pageSize}
+    </select>
+</mapper>

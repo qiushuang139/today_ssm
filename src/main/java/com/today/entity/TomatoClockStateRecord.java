@@ -38,13 +38,12 @@
 package com.today.entity;
 
 import java.util.Date;
-import java.util.Map;
 
 public class TomatoClockStateRecord {
     //状态变化时间
     private Date time;
     //状态类型
-    private int statetype;
+    private int stateType;
     //关联番茄钟ID
     private int tomatoClockID;
 
@@ -66,13 +65,11 @@ public class TomatoClockStateRecord {
     }
 
 
-    public int getStatetype() {
-        return statetype;
+    public int getStateType() {
+        return stateType;
     }
 
-    public void setStatetype(int statetype) {
-        this.statetype = statetype;
+    public void setStateType(int stateType) {
+        this.stateType = stateType;
     }
-
-
 }
