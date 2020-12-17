@@ -40,7 +40,7 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
         if (tokenManager.checkToken (model)) {
             // 如果 token 验证成功，将 token 对应的用户 id 存在 request 中，便于之后注入
             request.setAttribute (Constants.CURRENT_USER_ID, model.getUserId ());
-            System.out.println(request.getAttribute(Constants.CURRENT_USER_ID));
+//            System.out.println(request.getAttribute(Constants.CURRENT_USER_ID));
             return true;
         }
 
