@@ -6,10 +6,24 @@ import com.today.entity.User;
 import com.today.entity.UserPasswordRecord;
 import com.today.model.ResultModel;
 import com.today.service.UserService;
+import org.apache.ibatis.javassist.expr.Handler;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.DispatcherServlet;
+import org.springframework.web.servlet.HandlerAdapter;
+import org.springframework.web.servlet.HandlerMapping;
+import org.springframework.web.servlet.ViewResolver;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
 
 /**
  * @author :zhangyi
@@ -47,7 +61,26 @@ public class UserController {
             ex.printStackTrace();
             return new ResponseEntity(
                     new ResultModel(HttpStatus.INTERNAL_SERVER_ERROR),HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
+    @RequestMapping(value = "/upload-user-avatar",method = RequestMethod.POST)
+    public ResponseEntity uploadUserAvatar(int userId,@RequestParam("file") MultipartFile avatar){
+        try {
+
+            String path = System.getProperty("user.dir")+"\\"+"avatar";
+            if(userService.storeAvatar(avatar,path,userId)>=1){
+                return new ResponseEntity(new ResultModel(
+                        HttpStatus.OK
+                ),HttpStatus.OK);
+            }
+            return new ResponseEntity(
+                    new ResultModel(HttpStatus.INTERNAL_SERVER_ERROR),HttpStatus.INTERNAL_SERVER_ERROR);
+
+        }catch (Exception ex){
+            ex.printStackTrace();
+            return new ResponseEntity(
+                    new ResultModel(HttpStatus.INTERNAL_SERVER_ERROR,ex.getMessage()),HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -123,6 +156,28 @@ public class UserController {
             ex.printStackTrace();
             return new ResponseEntity(
                     new ResultModel(HttpStatus.INTERNAL_SERVER_ERROR),HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @RequestMapping(value = "/get-user-avatar/{userId}",method = RequestMethod.GET)
+    @Authorization
+    public void getUserAvatar(@PathVariable("userId")int userId, HttpServletResponse response){
+        InputStream inputStream=null;
+        OutputStream outputStream=null;
+        try {
+            String path = System.getProperty("user.dir")+"\\"+"avatar\\"+userId+".jpg";
+            File file=new File(path);
+            inputStream=new BufferedInputStream(new FileInputStream(path));
+
+
+            response.setContentType("multipart/form-data");
+//            response.setCharacterEncoding("utf-8");
+            outputStream=response.getOutputStream();
+
+            StreamUtils.copy(inputStream,outputStream);
+            outputStream.flush();
+        }catch (Exception ex){
+            ex.printStackTrace();
         }
     }
 

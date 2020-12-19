@@ -10,6 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * @author :zhangyi
  * @description:与日程相关的控制类
@@ -113,7 +116,7 @@ public class ScheduleController {
      */
     @RequestMapping(value = "/get-schedule-by-userid/{userId}",method = RequestMethod.GET)
     @Authorization
-    public ResponseEntity getScheduleByUserId(@PathVariable("userId") int userId,int page,int pageSize){
+    public ResponseEntity getScheduleByUserId(@PathVariable("userId") int userId,@RequestParam(name = "page",required = true) int page,int pageSize){
         try {
             return new ResponseEntity(new ResultModel(
                     HttpStatus.OK,scheduleService.getScheduleByUserId(userId,page,pageSize)),

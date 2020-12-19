@@ -1,6 +1,7 @@
 package com.today.service;
 
 import com.today.entity.User;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * @author :zhangyi
@@ -24,4 +25,6 @@ public interface UserService {
     int deleteUserByUserId(int userId);
 
     int updatePassword(int userId,String newPassword);
+
+    int storeAvatar(MultipartFile avatar,String path,int userId) throws Exception;
 }

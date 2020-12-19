@@ -15,6 +15,8 @@ public interface UserDao {
 
     int updateUser(User user);
 
+    int setUrlAvatarUrl(@Param("userId") int userId,@Param("path") String path);
+
     User getUserById(@Param("userId") int userId);
 
     int getMaxUserId();

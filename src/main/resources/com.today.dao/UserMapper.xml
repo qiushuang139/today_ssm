@@ -12,17 +12,22 @@
 
     <insert id="addUser" parameterType="com.today.entity.User">
         insert
-        into user(user_id,user_name,password,user_avatar_url)
-        values (#{userId},#{userName},#{userName},#{userAvatarUrl})
+        into user(user_id,user_name,password)
+        values (#{userId},#{userName},#{userName})
     </insert>
     <update id="updateUser" parameterType="com.today.entity.User">
         update user
-        set user_name=#{userName},user_avatar_url=#{userAvatarUrl}
+        set user_name=#{userName}
         where user_id=#{userId}
     </update>
     <update id="updatePassword">
         update user
         set password=#{newPassword}
+        where user_id=#{userId}
+    </update>
+    <update id="setUrlAvatarUrl">
+        update user
+        set user_avatar_url=#{path}
         where user_id=#{userId}
     </update>
     <delete id="deleteUser">

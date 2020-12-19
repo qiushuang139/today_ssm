@@ -13,6 +13,4 @@
     <import resource="classpath:spring/spring-mvc.xml"/>
     <import resource="classpath:spring/spring-service.xml"/>
     <import resource="classpath:spring/spring-redis.xml"/>
-
-
 </beans>

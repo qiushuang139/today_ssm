@@ -8,7 +8,9 @@ import com.today.entity.User;
 import com.today.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.util.List;
 
 /**
@@ -86,4 +88,13 @@ public class UserServiceImpl implements UserService {
         this.userDao=userDao;
     }
 
+    @Override
+    public int storeAvatar(MultipartFile avatar, String path,int userId)throws Exception {
+        File file=new File(path);
+        if(!file.exists()){
+            file.mkdir();
+        }
+        avatar.transferTo(new File(path+"\\"+userId+".jpg"));
+        return userDao.setUrlAvatarUrl(userId,path);
+    }
 }
