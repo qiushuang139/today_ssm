@@ -51,8 +51,11 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.javassist.expr.NewArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -60,12 +63,12 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/tomatoclock")
+@Transactional(rollbackFor = { Exception.class })
 public class TomatoController {
     //服务层注册
     @Autowired
     private TodoService todoService;
     //  @Qualifier("tomatoClockService")
-
 
 
     //初始化实现层
@@ -181,7 +184,7 @@ public class TomatoController {
                     new ResultModel(HttpStatus.INTERNAL_SERVER_ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
 
 
-        }
+        }   
         //return tomatoClockService.updateTomatoClock(tomatoClock);
     }
 
