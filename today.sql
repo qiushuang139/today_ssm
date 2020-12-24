@@ -96,10 +96,5 @@ CREATE TABLE `tomatoclockstaterecord` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
-alter table today.todo
-add theme varchar(20);
-
-alter table today.schedule
-add theme varchar(20);
 
 

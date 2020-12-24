@@ -43,8 +43,8 @@ public class WorkLogServiceImpl implements WorkLogService {
     }
 
     @Override
-    public int deleteWorkLogByDate(int userID, Date date) {
-        return workLogDao.deleteWorkLogByDate(userID,date);
+    public int deleteWorkLogByDate(int userId, Date date) {
+        return workLogDao.deleteWorkLogByDate(userId,date);
     }
 
     @Override
@@ -53,13 +53,13 @@ public class WorkLogServiceImpl implements WorkLogService {
     }
 
     @Override
-    public WorkLog getWorkLogByDate(int userID, String date) {
-        return workLogDao.getWorkLogByDate(userID,date);
+    public WorkLog getWorkLogByDate(int userId, String date) {
+        return workLogDao.getWorkLogByDate(userId,date);
     }
 
     @Override
-    public List<WorkLog> getWorkLogByUserID(int userID, int page, int pageSize) {
-        return workLogDao.getWorkLogByUserID(userID,page,pageSize);
+    public List<WorkLog> getWorkLogByUserID(int userId, int page, int pageSize) {
+        return workLogDao.getWorkLogByUserID(userId,page,pageSize);
     }
 
     public void setWorkLogDao(WorkLogDao workLogDao) {

@@ -38,15 +38,14 @@ import com.today.service.TomatoClockStateRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/tomato-records")
+@Transactional(rollbackFor = { Exception.class })
 public class TomatoClockStateRecordController {
     @Autowired
     private TomatoClockStateRecordService tomatoClockStateRecordService;
@@ -58,7 +57,7 @@ public class TomatoClockStateRecordController {
     //用post方法通过tomatoClockID获取对应番茄钟的使用记录
     @RequestMapping(value = "/{tomatoClockId}",method = RequestMethod.GET)
     @Authorization
-    public ResponseEntity getRecord(@PathVariable("tomatoClockId") int tomatoClockId, int page, int pageSize) {
+    public ResponseEntity getRecord(@PathVariable("tomatoClockId") int tomatoClockId, @RequestParam(value ="page",required = false,defaultValue = "0") int page, @RequestParam(value ="pageSize",required = false,defaultValue = "0")int pageSize) {
         try {
             List<TomatoClockStateRecord> tomatoClockStateRecords =
                     tomatoClockStateRecordService.getRecord(tomatoClockId,page,pageSize);

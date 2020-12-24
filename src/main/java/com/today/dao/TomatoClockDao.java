@@ -33,4 +33,8 @@ public interface TomatoClockDao {
     //编辑工作心得
     int setSummary(@Param("userId") int userId,@Param("summary") String summary);
 
+    //获取用户近一个月的番茄记录(时间，单次时长，番茄钟Id)
+     List<TomatoClock> getRecordByUserId(@Param("userId") int userId) ;
+
+
 }

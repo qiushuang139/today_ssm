@@ -47,10 +47,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/tomatoes")
+@Transactional(rollbackFor = { Exception.class })
 public class TomatoController {
     //服务层注册
     @Autowired
@@ -133,18 +137,18 @@ public class TomatoController {
 
     /**
      * Delete方法 根据userID删除对应的tomatoclock
-     * @param userID
+     * @param userId
      * @return
      */
-    @RequestMapping(value = "/delete-tomato-by-userid/{userID}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/delete-tomato-by-userid/{userId}", method = RequestMethod.DELETE)
     @Authorization
-    public ResponseEntity deleteTomatoClockByUserID(@PathVariable("userID") int userID) {
+    public ResponseEntity deleteTomatoClockByUserID(@PathVariable("userId") int userId) {
         try {
-            if (tomatoClockService.deleteTomatoClockByUserID(userID) >= 1) {
+            if (tomatoClockService.deleteTomatoClockByUserID(userId) >= 1) {
                 return new ResponseEntity(new ResultModel(HttpStatus.NO_CONTENT), HttpStatus.NO_CONTENT);
 
             }
-            return new ResponseEntity(new ResultModel(HttpStatus.NOT_FOUND, userID), HttpStatus.NOT_FOUND);
+            return new ResponseEntity(new ResultModel(HttpStatus.NOT_FOUND, userId), HttpStatus.NOT_FOUND);
         } catch (Exception ex) {
             ex.printStackTrace();
             return new ResponseEntity(
@@ -177,15 +181,15 @@ public class TomatoController {
     }
 
     /**PATCH方法 设置番茄钟的状态
-     * @param tomatoClockID
+     * @param tomatoClockId
      */
     @RequestMapping(value = "/set-tomato-state/{tomatoClockId}", method = RequestMethod.PATCH)
     @Authorization
-    public ResponseEntity setTomatoClockState(@PathVariable("tomatoClockId")int tomatoClockID, int type) {
+    public ResponseEntity setTomatoClockState(@PathVariable("tomatoClockId")int tomatoClockId, int type) {
         //    Todo todo = todoService.getTodoByTodoId(todoService.getMaxTodoId());
         try {
             return new ResponseEntity(
-                    new ResultModel(HttpStatus.OK, tomatoClockService.setTomatoClockState(tomatoClockID,type)), HttpStatus.OK);
+                    new ResultModel(HttpStatus.OK, tomatoClockService.setTomatoClockState(tomatoClockId,type)), HttpStatus.OK);
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -196,10 +200,22 @@ public class TomatoController {
 
         // return tomatoClockService.SetTomatoClockState(tomatoClock);
     }
+    /**
+     * 根据userId获取对应的记录
+     * @param userId
+     * @return
+     */
+    @RequestMapping(value = "/get-record/{userId}",method = RequestMethod.GET)
+    public List<TomatoClock> getRecordByUserId(@PathVariable("userId") int userId) {
+        List<TomatoClock> list=tomatoClockService.getRecordByUserId(userId);
+        return list;
+
+    }
+
 
     /**
      * PATCH 中止番茄钟
-     * @param tomatoClock
+     * @param tomatoId
      * @return
      */
     @RequestMapping(value = "/over-tomato/{tomatoId}", method = RequestMethod.PATCH)
@@ -243,7 +259,7 @@ public class TomatoController {
 
     /**
      * 暂停番茄钟 PUT方法
-     * @param tomatoClock
+     * @param tomatoId
      * @return
      */
     @RequestMapping(value = "/sleep-tomato/{tomatoId}", method = RequestMethod.PUT)

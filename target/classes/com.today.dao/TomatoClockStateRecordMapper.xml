@@ -4,22 +4,22 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.today.dao.TomatoClockStateRecordDao">
     <resultMap id="TomatoClockStateRecordResultMap" type="com.today.entity.TomatoClockStateRecord">
-    <id property="tomatoClockID" column="tomato_clock_id" /><!--关联番茄钟ID -->
-    <result property="statetype" column="state_type"  /><!--状态类型-->
+    <id property="tomatoClockId" column="tomato_clock_id" /><!--关联番茄钟ID -->
+    <result property="stateType" column="state_type"  /><!--状态类型-->
     <result property="time" column="time"  /><!--状态变化时间-->
     </resultMap>
 
     <update id="getSummry" parameterType="com.today.entity.TomatoClockStateRecord">
         update tomatoclockstaterecord
         set summry=#{summry}
-       where tomato_clock_id=#{tomatoClockID}
+       where tomato_clock_id=#{tomatoClockId}
     </update>
 
 
     <select id="getRecord" parameterType="com.today.entity.TomatoClockStateRecord" resultType="com.today.entity.TomatoClockStateRecord">
         select *
         from tomatoclockstaterecord
-        where tomato_clock_id=#{tomatoClockID}
+        where tomato_clock_id=#{tomatoClockId}
         order by time
         limit #{page,jdbcType=INTEGER},#{pagesize}
     </select>

@@ -179,6 +179,11 @@ public class TomatoClockImpl implements TomatoClockService {
         return tomatoClockDao.getTomatoClockByUserId(userId, page,pageSize);
     }
 
+    @Override
+    public List<TomatoClock> getRecordByUserId(int userId) {
+        return tomatoClockDao.getRecordByUserId(userId);
+    }
+
 //    @Override
 //    public int getTomatoClockID() {
 //        return tomatoClockDao.getTomatoClockById(tomatoClockID);

@@ -97,11 +97,11 @@ public class WorkLogController {
 
     @RequestMapping(method = RequestMethod.DELETE)
     @Authorization
-    public ResponseEntity deleteWorkLogByDate(int userID,String date) {
+    public ResponseEntity deleteWorkLogByDate(int userId,String date) {
         try {
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
-            workLogService.deleteWorkLogByDate(userID,formatter.parse(date));
+            workLogService.deleteWorkLogByDate(userId,formatter.parse(date));
             return new ResponseEntity(
                     new ResultModel(HttpStatus.OK), HttpStatus.OK
             );
@@ -115,10 +115,10 @@ public class WorkLogController {
 
     @RequestMapping(value = "/get-log-by-date", method = RequestMethod.GET)
     @Authorization
-    public ResponseEntity getLogByDate(int userID,String date) {
+    public ResponseEntity getLogByDate(int userId,String date) {
         try {
             return new ResponseEntity(
-                    new ResultModel(HttpStatus.OK, workLogService.getWorkLogByDate(userID,date)), HttpStatus.OK)
+                    new ResultModel(HttpStatus.OK, workLogService.getWorkLogByDate(userId,date)), HttpStatus.OK)
                     ;
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -129,10 +129,10 @@ public class WorkLogController {
 
     @RequestMapping(method = RequestMethod.GET)
     @Authorization
-    public ResponseEntity getWorkLogByUserID(int userID,int page,int pageSize){
+    public ResponseEntity getWorkLogByUserID(int userId,int page,int pageSize){
         try {
             return new ResponseEntity(
-                    new ResultModel(HttpStatus.OK,workLogService.getWorkLogByUserID(userID,page,pageSize)),HttpStatus.OK);
+                    new ResultModel(HttpStatus.OK,workLogService.getWorkLogByUserID(userId,page,pageSize)),HttpStatus.OK);
         }catch (Exception ex){
             ex.printStackTrace();
             return new ResponseEntity(new ResultModel(HttpStatus.INTERNAL_SERVER_ERROR),HttpStatus.INTERNAL_SERVER_ERROR);

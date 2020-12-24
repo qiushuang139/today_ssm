@@ -4,13 +4,13 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.today.dao.TomatoClockDao">
     <resultMap id="TomatoClockResultMap" type="com.today.entity.TomatoClock">
-        <id property="tomatoClockID" column="tomato_clock_id"/> <!--番茄钟id-->
+        <id property="tomatoClockId" column="tomato_clock_id"/> <!--番茄钟id-->
         <result property="todoId" column="todo_id"/>
         <result property="type" column="type"/>
-        <result property="singelDuration" column="singel_duration"/>
+        <result property="singleDuration" column="singel_duration"/>
         <result property="beginTime" column="begin_time"/>
-        <result property="userID" column="user_id"/>
-        <result property="singelRestDuration" column="singel_rest_duration"/>
+        <result property="userId" column="user_id"/>
+        <result property="singleRestDuration" column="singel_rest_duration"/>
         <result property="repeatTimes" column="repeat_times"/>
         <result property="summary" column="summary"/>
         <result property="bgmUrl" column="bgm_url"/>
@@ -19,15 +19,15 @@
     <insert id="addTomatoClock" parameterType="com.today.entity.TomatoClock">
         insert
         into tomatoclock
-        values (#{tomatoClockID},#{todoID},#{type},#{singelDuration},#{beginTime},#{userID},#{singelRestDuration},#{repeatTimes},
+        values (#{tomatoClockId},#{todoId},#{type},#{singelDuration},#{beginTime},#{userId},#{singelRestDuration},#{repeatTimes},
         #{summary},#{bgmUrl})
     </insert>
     <update id="updateTomatoClock" parameterType="com.today.entity.TomatoClock">
         update tomatoclock
-        set tomato_clock_id=#{tomatoClockID},todo_id=#{todoID},type=#{type},singel_duration=#{singelDuration}
-        ,begin_time=#{beginTime},user_id=#{userID},singel_rest_duration=#{singelRestDuration},
+        set tomato_clock_id=#{tomatoClockId},todo_id=#{todoId},type=#{type},singel_duration=#{singelDuration}
+        ,begin_time=#{beginTime},user_id=#{userId},singel_rest_duration=#{singelRestDuration},
         repeat_times=#{repeatTimes},summary=#{summary},bgm_url=#{bgmUrl}
-        where tomato_clock_id=#{tomatoClockID}
+        where tomato_clock_id=#{tomatoClockId}
     </update>
     <update id="setTomatoClockState" parameterType="com.today.entity.TomatoClock">
             update tomatoclock
@@ -80,6 +80,12 @@
         where user_id=#{userId}
         order by tomato_clock_id
         limit #{page,jdbcType=INTEGER},#{pagesize}
+    </select>
+    <select id="getRecordByUserId" resultType="com.today.entity.TomatoClock">
+        select begin_time,tomato_clock_id,singel_duration
+        from tomatoclock
+        where user_id=#{userId}
+        order by tomato_clock_id
     </select>
 
 </mapper>

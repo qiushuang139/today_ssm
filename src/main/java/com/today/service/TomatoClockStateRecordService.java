@@ -11,7 +11,7 @@ public interface TomatoClockStateRecordService {
     String getSummry();
 
     //得到对应用户的番茄钟使用记录
-    List<TomatoClockStateRecord> getRecord(int tomatoClockID,int page,int pageSize);
+    List<TomatoClockStateRecord> getRecord(int tomatoClockId,int page,int pageSize);
 
     //生成工作日志
 //    int generateDiary(@Param("tomatoClockID") int tomatoClockID);

@@ -10,11 +10,11 @@ public interface WorkLogService {
     //生成工作日志
     int addWorkLog(WorkLog workLog);
     //根据日期删除工作日志
-    int deleteWorkLogByDate(int userID, Date date);
+    int deleteWorkLogByDate(int userId, Date date);
     //更改工作日志
     int updateWorkLog(WorkLog workLog);
     //查找工作日志
-    WorkLog getWorkLogByDate(int userID, String date);
+    WorkLog getWorkLogByDate(int userId, String date);
 
-    List<WorkLog> getWorkLogByUserID(int userID,int page,int pageSize);
+    List<WorkLog> getWorkLogByUserID(int userId,int page,int pageSize);
 }
