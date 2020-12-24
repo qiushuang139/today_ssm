@@ -82,7 +82,7 @@
         limit #{page,jdbcType=INTEGER},#{pagesize}
     </select>
     <select id="getRecordByUserId" resultType="com.today.entity.TomatoClock">
-        select begin_time,tomato_clock_id,singel_duration
+        select begin_time,tomato_clock_id,singel_duration,type
         from tomatoclock
         where user_id=#{userId}
         order by tomato_clock_id

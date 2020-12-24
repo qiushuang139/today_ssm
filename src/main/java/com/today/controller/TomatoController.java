@@ -206,10 +206,20 @@ public class TomatoController {
      * @return
      */
     @RequestMapping(value = "/get-record/{userId}",method = RequestMethod.GET)
-    public List<TomatoClock> getRecordByUserId(@PathVariable("userId") int userId) {
-        List<TomatoClock> list=tomatoClockService.getRecordByUserId(userId);
-        return list;
+    public ResponseEntity getRecordByUserId(@PathVariable("userId") int userId) {
+        try {
 
+            return new ResponseEntity(
+                    new ResultModel(
+                            HttpStatus.OK, tomatoClockService.getRecordByUserId(userId)), HttpStatus.OK
+            );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity(
+                    new ResultModel(HttpStatus.INTERNAL_SERVER_ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
+
+        }
     }
 
 

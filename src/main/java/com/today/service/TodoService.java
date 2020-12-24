@@ -1,6 +1,7 @@
 package com.today.service;
 
 import com.today.entity.Todo;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -25,7 +26,9 @@ public interface TodoService {
     List<Todo> getTodoByUserId(int userId,int page,int pageSize);
 
     List<Todo> getTodoByScheduleId(int scheduleId,int page,int pageSize);
-
+    List<Todo>getTodoBypriority( int priority,int page,int pageSize);
+    List<Todo>getTodoBytype(int todoType, int page, int pageSize);
+    List<Todo>getTodoBystate(int todoState, int page, int pageSize);
     int setChildTodoId(int childTodoId, int parentTodoId);
 
     List<Todo> getChildTodos(int todoId,int page,int pageSize);

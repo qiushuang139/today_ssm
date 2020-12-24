@@ -120,8 +120,9 @@ public class ScheduleController {
     @Authorization
     public ResponseEntity getScheduleByUserId(@PathVariable("userId") int userId,@RequestParam(name = "page",required = true) int page,int pageSize){
         try {
+            int num=scheduleService.getScheduleNumByUserId(userId);
             return new ResponseEntity(new ResultModel(
-                    HttpStatus.OK,scheduleService.getScheduleByUserId(userId,page,pageSize)),
+                    HttpStatus.OK,Integer.toString(num),scheduleService.getScheduleByUserId(userId,page,pageSize)),
                     HttpStatus.OK);
         }catch (Exception ex){
             ex.printStackTrace();

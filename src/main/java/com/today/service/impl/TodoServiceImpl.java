@@ -70,6 +70,21 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
+    public List<Todo> getTodoBypriority(int priority, int page, int pageSize) {
+        return todoDao.getTodoBypriority(priority,page,pageSize);
+    }
+
+    @Override
+    public List<Todo> getTodoBytype(int todoType, int page, int pageSize) {
+        return todoDao.getTodoBytype(todoType, page, pageSize);
+    }
+
+    @Override
+    public List<Todo> getTodoBystate(int todoState, int page, int pageSize) {
+        return todoDao.getTodoBystate(todoState, page, pageSize);
+    }
+
+    @Override
     public int setChildTodoId(int childTodoId, int parentTodoId) {
         TodoRelationship relationship=new TodoRelationship();
         relationship.setChildTodoId(childTodoId);

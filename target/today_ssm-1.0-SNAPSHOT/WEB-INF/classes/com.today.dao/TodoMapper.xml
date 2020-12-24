@@ -95,6 +95,27 @@
         from todo
         where schedule_id=#{scheduleId}
     </select>
+    <select id="getTodoBypriority" resultType="com.today.entity.Todo">
+        select *
+         from todo
+        where  priority=#{priority}
+        order by priority
+         limit #{page,jdbcType=INTEGER},#{pageSize}
+    </select>
+    <select id="getTodoBytype" resultType="com.today.entity.Todo">
+ select *
+         from todo
+        where  type =#{todoType}
+        order by type
+         limit #{page,jdbcType=INTEGER},#{pageSize}
+</select>
+    <select id="getTodoBystate" resultType="com.today.entity.Todo">
+         select *
+         from todo
+        where  todo_state =#{todoState}
+        order by todo_state
+         limit #{page,jdbcType=INTEGER},#{pageSize}
+    </select>
 
 
 </mapper>
