@@ -11,8 +11,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.AbstractFactoryBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -67,7 +69,7 @@ public class UserController {
     @RequestMapping(value = "/upload-user-avatar",method = RequestMethod.POST)
     public ResponseEntity uploadUserAvatar(int userId,@RequestParam("file") MultipartFile avatar){
         try {
-
+//            AbstractFactoryBean
             String path = System.getProperty("user.dir")+"\\"+"avatar";
             if(userService.storeAvatar(avatar,path,userId)>=1){
                 return new ResponseEntity(new ResultModel(

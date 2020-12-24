@@ -35,7 +35,7 @@ import java.util.Date;
 
 public class WorkLog {
     //用户ID
-    private int userID;
+    private int userId;
     //日期
     private Date date;
     //番茄钟得分
@@ -77,12 +77,12 @@ public class WorkLog {
         this.tomatoScore = tomatoScore;
     }
 
-    public int getUserID() {
-        return userID;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUserID(int userID) {
-        this.userID = userID;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
 }

@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
  * @date :2020/11/16 22:16
  */
 public interface UserService {
+    User getUserByName(String userName);
 
     User getUserById(int userId);
 

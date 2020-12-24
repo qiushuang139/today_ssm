@@ -62,12 +62,12 @@ public class WorkLogController {
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             Date time = new Date();
             workLog.setDate(time);
-            if(workLogService.getWorkLogByDate(workLog.getUserID(),formatter.format(time))!=null){
+            if(workLogService.getWorkLogByDate(workLog.getUserId(),formatter.format(time))!=null){
                 return new ResponseEntity(new ResultModel(HttpStatus.OK),HttpStatus.OK);
             }
             workLogService.addWorkLog(workLog);
             return new ResponseEntity(
-                    new ResultModel(HttpStatus.OK, workLogService.getWorkLogByDate(workLog.getUserID(),formatter.format(time))),
+                    new ResultModel(HttpStatus.OK, workLogService.getWorkLogByDate(workLog.getUserId(),formatter.format(time))),
                     HttpStatus.OK);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -84,7 +84,7 @@ public class WorkLogController {
             String date=formatter.format(workLog.getDate());
             workLogService.updateWorkLog(workLog);
             return new ResponseEntity(
-                    new ResultModel(HttpStatus.OK, workLogService.getWorkLogByDate(workLog.getUserID(),date)), HttpStatus.OK);
+                    new ResultModel(HttpStatus.OK, workLogService.getWorkLogByDate(workLog.getUserId(),date)), HttpStatus.OK);
         } catch (Exception ex) {
             ex.printStackTrace();
             return new ResponseEntity(

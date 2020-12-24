@@ -8,14 +8,16 @@ import java.util.Date;
  * @date :2020/11/23 19:44
  */
 public class Schedule {
-    int scheduleId;
-    int userId;
-    String content;
-    Date beginTime;
-    Date endTime;
-    int repeatType;
-    int alarmType;
-    int scheduleType;
+    private int scheduleId;
+    private int userId;
+    private String theme;
+    private String content;
+    private Date beginTime;
+    private Date endTime;
+    private int repeatType;
+    private int alarmType;
+    private int scheduleType;
+
 
     public int getScheduleId() {
         return scheduleId;
@@ -31,6 +33,14 @@ public class Schedule {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public String getTheme() {
+        return theme;
+    }
+
+    public void setTheme(String theme) {
+        this.theme = theme;
     }
 
     public String getContent() {

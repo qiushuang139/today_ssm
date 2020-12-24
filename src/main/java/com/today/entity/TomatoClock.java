@@ -34,17 +34,17 @@ package com.today.entity;
 import java.util.Date;
 
 public class TomatoClock {
-    //单次时间
-    private int singleDuration;
 
     //用户ID
-    private int userID;
+    private int userId;
     //番茄钟
-    private int tomatoClockID;
+    private int tomatoClockId;
     //待办ID
-    protected int todoID;
+    protected int todoId;
     //类型
     private int type;
+    //单次时间
+    private int singleDuration;
     //单次休息时长
     private int singleRestDuration;
     //开始时间
@@ -56,12 +56,12 @@ public class TomatoClock {
     //bgm
     private String bgmUrl;
 
-    public int getTomatoClockID() {
-        return tomatoClockID;
+    public int getTomatoClockId() {
+        return tomatoClockId;
     }
 
-    public void setTomatoClockID(int tomatoClockID) {
-        this.tomatoClockID = tomatoClockID;
+    public void setTomatoClockId(int tomatoClockId) {
+        this.tomatoClockId = tomatoClockId;
     }
 
     public int getType() {
@@ -72,20 +72,20 @@ public class TomatoClock {
         this.type = type;
     }
 
-    public int getUserID() {
-        return userID;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUserID(int userID) {
-        this.userID = userID;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
-    public int getTodoID() {
-        return todoID;
+    public int getTodoId() {
+        return todoId;
     }
 
-    public void setTodoID(int todoID) {
-        this.todoID = todoID;
+    public void setTodoId(int todoId) {
+        this.todoId = todoId;
     }
 
     public int getSingleDuration() {

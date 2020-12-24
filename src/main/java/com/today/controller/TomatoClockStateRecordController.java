@@ -35,9 +35,7 @@ import com.today.component.annotation.Authorization;
 import com.today.entity.TomatoClockStateRecord;
 import com.today.model.ResultModel;
 import com.today.service.TomatoClockStateRecordService;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,12 +43,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 @RestController
-@RequestMapping("/tomatoclcokstaterecord")
+@RequestMapping("/tomato-records")
 public class TomatoClockStateRecordController {
     @Autowired
     private TomatoClockStateRecordService tomatoClockStateRecordService;
@@ -60,12 +56,12 @@ public class TomatoClockStateRecordController {
 //};
     
     //用post方法通过tomatoClockID获取对应番茄钟的使用记录
-    @RequestMapping(value = "/{tomatoClockID}",method = RequestMethod.GET)
+    @RequestMapping(value = "/{tomatoClockId}",method = RequestMethod.GET)
     @Authorization
-    public ResponseEntity getRecord(@PathVariable("tomatoClockID") int tomatoClockID,int page,int pageSize) {
+    public ResponseEntity getRecord(@PathVariable("tomatoClockId") int tomatoClockId, int page, int pageSize) {
         try {
             List<TomatoClockStateRecord> tomatoClockStateRecords =
-                    tomatoClockStateRecordService.getRecord(tomatoClockID,page,pageSize);
+                    tomatoClockStateRecordService.getRecord(tomatoClockId,page,pageSize);
             return new ResponseEntity(
                     new ResultModel(HttpStatus.OK,tomatoClockStateRecords),HttpStatus.OK
                     );

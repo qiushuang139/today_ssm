@@ -97,4 +97,9 @@ public class UserServiceImpl implements UserService {
         avatar.transferTo(new File(path+"\\"+userId+".jpg"));
         return userDao.setUrlAvatarUrl(userId,path);
     }
+
+    @Override
+    public User getUserByName(String userName) {
+        return userDao.getUserByName(userName);
+    }
 }

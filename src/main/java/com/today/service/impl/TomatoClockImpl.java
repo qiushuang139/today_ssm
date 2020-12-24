@@ -109,10 +109,8 @@
  */
 package com.today.service.impl;
 
-import com.today.component.Constants;
 import com.today.dao.TodoDao;
 import com.today.dao.TomatoClockDao;
-import com.today.entity.Todo;
 import com.today.entity.TomatoClock;
 import com.today.service.TomatoClockService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -122,64 +120,63 @@ import java.util.List;
 
 @Service
 public class TomatoClockImpl implements TomatoClockService {
+
     @Autowired
-    private TodoDao todoDao;
-    @Autowired
-    private TomatoClockDao TomatoClockDao;
+    private TomatoClockDao tomatoClockDao;
 
     @Override
     public int addTomatoClock(TomatoClock tomatoClock) {
-        return TomatoClockDao.addTomatoClock(tomatoClock);
+        return tomatoClockDao.addTomatoClock(tomatoClock);
     }
 
     @Override
     public int updateTomatoClock(TomatoClock tomatoClock) {
-        return TomatoClockDao.updateTomatoClock(tomatoClock);
+        return tomatoClockDao.updateTomatoClock(tomatoClock);
     }
 
     @Override
-    public int SetTomatoClockState(int tomatoClockID,int type) {
-        return TomatoClockDao.SetTomatoClockState(tomatoClockID,type);
+    public int setTomatoClockState(int tomatoClockId, int type) {
+        return tomatoClockDao.setTomatoClockState(tomatoClockId,type);
     }
 
     @Override
-    public int OverTomatoClock(TomatoClock tomatoClock) {
-        return TomatoClockDao.OverTomatoClock(tomatoClock);
+    public int overTomatoClock(int tomatoId) {
+        return tomatoClockDao.overTomatoClock(tomatoId);
     }
 
     @Override
-    public TomatoClock getTomatoClockById(int tomatoClockID) {
-        return TomatoClockDao.getTomatoClockById(tomatoClockID);
+    public TomatoClock getTomatoClockById(int tomatoClockId) {
+        return tomatoClockDao.getTomatoClockById(tomatoClockId);
     }
 
     @Override
-    public int SleepTomatoClock(TomatoClock tomatoClock) {
-        return TomatoClockDao.SleepTomatoClock(tomatoClock);
+    public int sleepTomatoClock(int tomatoId) {
+        return tomatoClockDao.sleepTomatoClock(tomatoId);
     }
 
     @Override
     public int getTomatoClockID() {
-        return TomatoClockDao.getTomatoClockId();
+        return tomatoClockDao.getTomatoClockId();
     }
 
     @Override
-    public int deleteTomatoClockByTomatoClockId(int tomatoclockID) {
-        return TomatoClockDao.deleteTomatoClockByTomatoClockId(tomatoclockID);
+    public int deleteTomatoClockByTomatoClockId(int tomatoClockId) {
+        return tomatoClockDao.deleteTomatoClockByTomatoClockId(tomatoClockId);
     }
 
     @Override
-    public int deleteTomatoClockByuserID(int userID) {
-        return TomatoClockDao.deleteTomatoClockByuserID(userID);
+    public int deleteTomatoClockByUserID(int userId) {
+        return tomatoClockDao.deleteTomatoClockByUserId(userId);
     }
 
     @Override
-    public int setSummary(int userID,String summary) {
-        return TomatoClockDao.setSummary(userID,summary);
+    public int setSummary(int userId,String summary) {
+        return tomatoClockDao.setSummary(userId,summary);
     }
 
     @Override
-    public List<TomatoClock> getTomatoClockByUserId(int userID, int page,int pageSize) {
-        return TomatoClockDao.getTomatoClockByUserId(userID, page,pageSize);
+    public List<TomatoClock> getTomatoClockByUserId(int userId, int page,int pageSize) {
+        return tomatoClockDao.getTomatoClockByUserId(userId, page,pageSize);
     }
 
 //    @Override
@@ -193,7 +190,7 @@ public class TomatoClockImpl implements TomatoClockService {
 //    }
 
     public void setTomatoClockDao(TomatoClockDao tomatoClockDao) {
-        this.TomatoClockDao = tomatoClockDao;
+        this.tomatoClockDao = tomatoClockDao;
     }
 //
 //   public TomatoClockDao getTomatoClockDao() {

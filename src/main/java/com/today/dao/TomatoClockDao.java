@@ -14,23 +14,23 @@ public interface TomatoClockDao {
     //修改番茄钟的设置（初始化）
     int updateTomatoClock(TomatoClock tomatoCLock);
     //设置番茄钟的状态
-    int SetTomatoClockState (@Param("tomatoClockID")int tomatoClockID,@Param("type")int type);
+    int setTomatoClockState(@Param("tomatoClockId")int tomatoClockId, @Param("type")int type);
     //中止番茄钟
-    int OverTomatoClock(TomatoClock tomatoCLock);
+    int overTomatoClock(@Param("tomatoId")int tomatoId);
     //暂停番茄钟 PUT方法
-    int SleepTomatoClock(TomatoClock tomatoCLock);
+    int sleepTomatoClock(@Param("tomatoId")int tomatoId);
     //根据userId获取所有的tomatoclock
-    List<TomatoClock> getTomatoClockByUserId(@Param("userID")int userID,
+    List<TomatoClock> getTomatoClockByUserId(@Param("userId")int userId,
                                              @Param("page")int page,@Param("pagesize")int pagesize);
     //根据tomatoClockID获取对应番茄钟
-    TomatoClock getTomatoClockById(@Param("tomatoClockID")int tomatoClockID);
+    TomatoClock getTomatoClockById(@Param("tomatoClockId")int tomatoClockId);
     //得到最大番茄钟ID
     int getTomatoClockId();
     //根据tomatoClockID删除对应的tomatoclock
-    int deleteTomatoClockByTomatoClockId(@Param("tomatoClockID") int tomatoClckID);
+    int deleteTomatoClockByTomatoClockId(@Param("tomatoClockId") int tomatoClockId);
     //根据userID删除对应的tomatoclock
-    int deleteTomatoClockByuserID(@Param("userID") int userID);
+    int deleteTomatoClockByUserId(@Param("userId") int userId);
     //编辑工作心得
-    int setSummary(@Param("userID") int userID,@Param("summary") String summary);
+    int setSummary(@Param("userId") int userId,@Param("summary") String summary);
 
 }

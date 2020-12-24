@@ -5,7 +5,7 @@
 <mapper namespace="com.today.dao.TomatoClockDao">
     <resultMap id="TomatoClockResultMap" type="com.today.entity.TomatoClock">
         <id property="tomatoClockID" column="tomato_clock_id"/> <!--番茄钟id-->
-        <result property="todoID" column="todo_id"/>
+        <result property="todoId" column="todo_id"/>
         <result property="type" column="type"/>
         <result property="singelDuration" column="singel_duration"/>
         <result property="beginTime" column="begin_time"/>
@@ -29,46 +29,46 @@
         repeat_times=#{repeatTimes},summary=#{summary},bgm_url=#{bgmUrl}
         where tomato_clock_id=#{tomatoClockID}
     </update>
-    <update id="SetTomatoClockState" parameterType="com.today.entity.TomatoClock">
+    <update id="setTomatoClockState" parameterType="com.today.entity.TomatoClock">
             update tomatoclock
             set type=#{type}
-            where tomato_clock_id=#{tomatoClockID}
+            where tomato_clock_id=#{tomatoClockId}
             </update>
 
-    <update id="SleepTomatoClock" parameterType="com.today.entity.TomatoClock">
+    <update id="sleepTomatoClock" parameterType="com.today.entity.TomatoClock">
         update tomatoclock
         set type=1
-        where tomato_clock_id=#{tomatoClockID}
+        where tomato_clock_id=#{tomatoId}
     </update>
-    <update id="OverTomatoClock">
+    <update id="overTomatoClock">
     update tomatoclock
         set type=2
-        where tomato_clock_id=#{tomatoClockID}
+        where tomato_clock_id=#{tomatoId}
     </update>
     <update id="setSummary">
         update tomatoclock
         set summmary=#{summary}
-        where user_id=#{userID}
+        where user_id=#{userId}
     </update>
     <delete id="deleteTomatoClockByTomatoClockId">
         delete tomatoclockstaterecord,tomatoclock
         from  tomatoclock left join tomatoclockstaterecord
         on tomatoclock.tomato_clock_id=tomatoclockstaterecord.tomato_clock_id
-        where tomatoclock.tomato_clock_id=#{tomatoClockID}
+        where tomatoclock.tomato_clock_id=#{tomatoClckId}
     </delete>
-    <delete id="deleteTomatoClockByuserID">
+    <delete id="deleteTomatoClockByUserId">
         DELETE
         FROM
 	       tomatoclock
         WHERE
-	       tomatoclock.user_id =#{userID}
+	       tomatoclock.user_id =#{userId}
     </delete>
 
 
     <select id="getTomatoClockById" resultMap="TomatoClockResultMap">
         select  *
         from tomatoclock
-        where tomato_clock_id=#{tomatoClockID}
+        where tomato_clock_id=#{tomatoClockId}
     </select>
     <select id="getTomatoClockId" resultType="java.lang.Integer">
         select max(tomato_clock_id)
@@ -77,7 +77,7 @@
     <select id="getTomatoClockByUserId" resultType="com.today.entity.TomatoClock">
         select *
         from tomatoclock
-        where user_id=#{userID}
+        where user_id=#{userId}
         order by tomato_clock_id
         limit #{page,jdbcType=INTEGER},#{pagesize}
     </select>

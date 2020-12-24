@@ -19,6 +19,8 @@ public interface UserDao {
 
     User getUserById(@Param("userId") int userId);
 
+    User getUserByName(@Param("userName")String userName);
+
     int getMaxUserId();
 
     int isExists(@Param("userId")int userId);

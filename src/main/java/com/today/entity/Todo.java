@@ -9,6 +9,7 @@ import java.util.Date;
  */
 public class Todo {
     private int todoId;//待办ID
+    private String theme;//待办主题
     private Integer scheduleId;//关联日程ID
     private int userId;//关联用户ID
     private int todoProgressRate;//待办完成进程进度百分比（０％－１００％）
@@ -20,12 +21,21 @@ public class Todo {
     private Date endTime;//DDL
     private String content;//待办内容
 
+
     public int getTodoId() {
         return todoId;
     }
 
     public void setTodoId(int todoId) {
         this.todoId = todoId;
+    }
+
+    public String getTheme() {
+        return theme;
+    }
+
+    public void setTheme(String theme) {
+        this.theme = theme;
     }
 
     public Integer getScheduleId() {

@@ -45,15 +45,15 @@ public class TomatoClockStateRecord {
     //状态类型
     private int stateType;
     //关联番茄钟ID
-    private int tomatoClockID;
+    private int tomatoClockId;
 
-    public int getTomatoClockID() {
-        return tomatoClockID;
+    public int getTomatoClockId() {
+        return tomatoClockId;
     }
 
 
-    public void setTomatoClockID(int tomatoClockID) {
-        this.tomatoClockID = tomatoClockID;
+    public void setTomatoClockId(int tomatoClockId) {
+        this.tomatoClockId = tomatoClockId;
     }
 
     public Date getTime() {
