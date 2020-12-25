@@ -3,8 +3,8 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.today.dao.TodoDao">
-    <resultMap id="TodoResultMap" type="com.today.entity.Todo" >
-        <id property="todoId" column="todo_id" /><!--待办id-->
+    <resultMap id="TodoResultMap" type="com.today.entity.Todo">
+        <id property="todoId" column="todo_id"/><!--待办id-->
         <result property="scheduleId" column="schedule_id"/>
         <result property="userId" column="user_id"/>
         <result property="todoProgressRate" column="todo_progress_rate"/>
@@ -39,17 +39,17 @@
         where todo_id=#{todoId}
     </delete>
 
-<!--    <delete id="deleteTodoByUserId">-->
-<!--        delete-->
-<!--        from todo-->
-<!--        where user_id=#{userId}-->
-<!--    </delete>-->
+    <!--    <delete id="deleteTodoByUserId">-->
+    <!--        delete-->
+    <!--        from todo-->
+    <!--        where user_id=#{userId}-->
+    <!--    </delete>-->
 
-<!--    <delete id="deleteTodoByScheduleId">-->
-<!--        delete-->
-<!--        from todo-->
-<!--        where schedule_id=#{scheduleId}-->
-<!--    </delete>-->
+    <!--    <delete id="deleteTodoByScheduleId">-->
+    <!--        delete-->
+    <!--        from todo-->
+    <!--        where schedule_id=#{scheduleId}-->
+    <!--    </delete>-->
 
     <select id="getTodoByTodoId" resultMap="TodoResultMap">
         select *
@@ -95,26 +95,35 @@
         from todo
         where schedule_id=#{scheduleId}
     </select>
-    <select id="getTodoBypriority" resultType="com.today.entity.Todo">
+    <select id="getTodoBypriority" resultMap="TodoResultMap">
         select *
          from todo
         where  priority=#{priority}
         order by priority
          limit #{page,jdbcType=INTEGER},#{pageSize}
     </select>
-    <select id="getTodoBytype" resultType="com.today.entity.Todo">
+    <select id="getTodoBytype" resultMap="TodoResultMap">
  select *
          from todo
         where  type =#{todoType}
         order by type
          limit #{page,jdbcType=INTEGER},#{pageSize}
 </select>
-    <select id="getTodoBystate" resultType="com.today.entity.Todo">
-         select *
-         from todo
-        where  todo_state =#{todoState}
-        order by todo_state
-         limit #{page,jdbcType=INTEGER},#{pageSize}
+    <select id="getTodoByMohu" resultMap="TodoResultMap">
+        select *
+        from todo
+        <where>
+            <if test="priority!=null and priority!=''">
+                and priority like #{priority}
+            </if>
+            <if test="todoState!=null and todoState!=''">
+                and todo_state like #{todoState}
+            </if>
+            <if test="todoType!=null and todoTypr!=''">
+                and type like #{todoType}
+            </if>
+        </where>
+        limit #{page,jdbcType=INTEGER},#{pageSize}
     </select>
 
 

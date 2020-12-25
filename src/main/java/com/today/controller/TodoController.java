@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -127,6 +128,7 @@ public class TodoController {
                     new ResultModel(HttpStatus.INTERNAL_SERVER_ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
     /**
      * @param
      * @description: 根据priority获取Todo
@@ -150,6 +152,7 @@ public class TodoController {
 
     /**
      * 根据type获取Todo
+     *
      * @param todoType
      * @param page
      * @param pageSize
@@ -173,19 +176,22 @@ public class TodoController {
 
     /**
      * 根据state获取Todo
+     *
      * @param todoState
      * @param page
      * @param pageSize
      * @return
      */
-    @RequestMapping(value = "/get-todo-by-state/{todoState}", method = RequestMethod.GET)
+    @RequestMapping(value = "/get-todo", method = RequestMethod.POST)
     @Authorization
-    public ResponseEntity getTodoByTodoState(@PathVariable("todoState") int todoState, int page, int pageSize) {
+    public ResponseEntity getTodoByTodoState(@RequestParam(value = "todoState", required = false) Integer todoState,
+                                             @RequestParam(value = "priority", required = false) Integer priority,
+                                             @RequestParam(value = "todoType", required = false) Integer todoType,
+                                             Integer page, Integer pageSize) {
         try {
-
             return new ResponseEntity(
                     new ResultModel(HttpStatus.OK,
-                            todoService.getTodoBystate(todoState, page, pageSize)), HttpStatus.OK);
+                    todoService.getTodoByMohu(todoState, priority, todoType, page, pageSize)), HttpStatus.OK);
         } catch (Exception ex) {
             ex.printStackTrace();
             return new ResponseEntity(
@@ -238,7 +244,7 @@ public class TodoController {
      */
     @Authorization
     @RequestMapping(value = "/get-todo-by-scheduleid/{scheduleId}", method = RequestMethod.GET)
-    public ResponseEntity getTodoNumByScheduleId(@PathVariable("scheduleId") int scheduleId, int page, int pageSize) {
+    public ResponseEntity getTodoNumByScheduleId(@PathVariable("scheduleId") int scheduleId, Integer page, Integer pageSize) {
         try {
             int num = todoService.getTodoNumByScheduleId(scheduleId);
             return new ResponseEntity(
@@ -269,7 +275,7 @@ public class TodoController {
      */
     @RequestMapping(value = "/get-child-todo/{todoId}", method = RequestMethod.GET)
     @Authorization
-    public ResponseEntity getChildTodos(@PathVariable("todoId") int todoId, int page, int pageSize) {
+    public ResponseEntity getChildTodos(@PathVariable("todoId") int todoId, Integer page, Integer pageSize) {
         try {
             int num = todoService.getChildTodoNum(todoId);
             return new ResponseEntity(new ResultModel(HttpStatus.OK, Integer.toString(num), todoService.getChildTodos(todoId, page, pageSize)), HttpStatus.OK);
@@ -291,7 +297,7 @@ public class TodoController {
     public ResponseEntity getParentTodos(@PathVariable("todoId") int todoId, int page, int pageSize) {
         try {
             int num = todoService.getParentTodoNum(todoId);
-            return new ResponseEntity(new ResultModel(HttpStatus.OK,Integer.toString(num), todoService.getParentTodos(todoId, page, pageSize)), HttpStatus.OK);
+            return new ResponseEntity(new ResultModel(HttpStatus.OK, Integer.toString(num), todoService.getParentTodos(todoId, page, pageSize)), HttpStatus.OK);
         } catch (Exception ex) {
             ex.printStackTrace();
             return new ResponseEntity(

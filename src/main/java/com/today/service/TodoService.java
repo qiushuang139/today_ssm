@@ -28,7 +28,7 @@ public interface TodoService {
     List<Todo> getTodoByScheduleId(int scheduleId,int page,int pageSize);
     List<Todo>getTodoBypriority( int priority,int page,int pageSize);
     List<Todo>getTodoBytype(int todoType, int page, int pageSize);
-    List<Todo>getTodoBystate(int todoState, int page, int pageSize);
+    List<Todo>getTodoByMohu(Integer todoState,Integer priority,Integer todoType, int page, int pageSize);
     int setChildTodoId(int childTodoId, int parentTodoId);
 
     List<Todo> getChildTodos(int todoId,int page,int pageSize);

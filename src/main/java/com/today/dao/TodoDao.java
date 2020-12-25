@@ -32,7 +32,9 @@ public interface TodoDao {
 
     List<Todo>getTodoBypriority(@Param("priority") int priority, @Param("page")int page, @Param("pageSize")int pageSize);
     List<Todo>getTodoBytype(@Param("todoType") int todoType, @Param("page")int page, @Param("pageSize")int pageSize);
-    List<Todo>getTodoBystate(@Param("todoState") int todoState, @Param("page")int page, @Param("pageSize")int pageSize);
+    List<Todo>getTodoByMohu(@Param("todoState") Integer todoState,
+                            @Param("priority") Integer priority,
+                            @Param("todoType") Integer todoType,@Param("page")int page, @Param("pageSize")int pageSize);
     int getMaxTodoId();
 
     List<Integer> getTodoIdsByScheduleId(@Param("scheduleId") int scheduleId);

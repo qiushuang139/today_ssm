@@ -57,7 +57,7 @@ public class TomatoClockStateRecordController {
     //用post方法通过tomatoClockID获取对应番茄钟的使用记录
     @RequestMapping(value = "/{tomatoClockId}",method = RequestMethod.GET)
     @Authorization
-    public ResponseEntity getRecord(@PathVariable("tomatoClockId") int tomatoClockId, @RequestParam(value ="page",required = false,defaultValue = "0") int page, @RequestParam(value ="pageSize",required = false,defaultValue = "0")int pageSize) {
+    public ResponseEntity getRecord(@PathVariable("tomatoClockId") int tomatoClockId, @RequestParam(value ="page",required = false) Integer page, @RequestParam(value ="pageSize",required = false)Integer pageSize) {
         try {
             List<TomatoClockStateRecord> tomatoClockStateRecords =
                     tomatoClockStateRecordService.getRecord(tomatoClockId,page,pageSize);

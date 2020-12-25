@@ -80,8 +80,10 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public List<Todo> getTodoBystate(int todoState, int page, int pageSize) {
-        return todoDao.getTodoBystate(todoState, page, pageSize);
+    public List<Todo> getTodoByMohu(Integer todoState, Integer priority,Integer todoType,int page, int pageSize) {
+        List<Todo> list=todoDao.getTodoByMohu(todoState, priority, todoType, page, pageSize);
+        return list;
+        //return todoDao.getTodoByMohu(todoState,priority,todoType,page,pageSize);
     }
 
     @Override
